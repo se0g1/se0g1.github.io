@@ -1,0 +1,237 @@
+I"�<p>Merhaba, bloga uzun süre aradan sonra yazılar ateşlemişken, proje oluştururken sıkça kullandığım bir yöntemin <strong>Türkçe Dökümantasyonu</strong> olsun istedim. Bu yöntemin adı <strong>Virtual Host</strong> olarak bilinmektedir. Her projeye bir domainmiş gibi isim atayarak kodlama ve proje isimlerinin akılda kalması hususunda bana yardımcı oluyor. (Kodlama olarak şu şekilde projeye define bir url atarsınız css js vb gibi dosyaları entegre ederken rahatlık sağlar gibi gibi)</p>
+
+<!-- excerpt separator -->
+
+<div class="box">
+  <p>Bu <strong>archlampp</strong> serisinin 2. yazısıdır Toplamda 4 bölümden oluşmaktadır.</p>
+
+  <ul class="directory-list">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/arch-linux-lampp-kurulumuphp7xmariadbmy/">Arch Linux Lampp Kurulumu(PHP7x+MariaDB+Mysql+Phpmyadmin)</a>
+      
+    </li>
+    
+    
+    
+    
+    <li class="folder">
+      
+      <i>Arch Linux Apache(lampp) Sanal Sunucu Kurulumu</i>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/virtualbox-vagrant-laravel-arch-linux/">Archlinux üzerinde Virtualbox + Vagrant + Laravel + Phpmyadmin Kurulumu(Homestead)</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/archlinux-valet-kurulumu/">Arch Linux Laravel Valet Kurulumu</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+<ol>
+  <li><a href="https://yuceltoluyag.github.io/arch-linux-lampp-kurulumuphp7xmariadbmy/">Arch Linux Xampp Lampp Kurulumu</a> yapılmalıdır</li>
+</ol>
+
+<p><strong>baba test</strong> adında domain oluşturdum.</p>
+
+<h1 id="domain-oluşturma">Domain Oluşturma</h1>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo mkdir</span> /srv/http/baba.test
+
+</code></pre></div></div>
+
+<p>Bu domainin içerisine test olarak bir dosya atın örnek olarak :</p>
+
+<h2 id="dosya-oluşturma">Dosya Oluşturma</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>nano /srv/http/baba.test/index.html
+</code></pre></div></div>
+
+<p>içerisine şu kodları yapıştırın</p>
+
+<h2 id="dosya-düzenleme">Dosya Düzenleme</h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>baba.test<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>
+      Youtube Kanalıma Abone Olmayı unutmayın : Virtual Host işlemi başarılı
+    <span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h2 id="dosya-kaydetme">Dosya Kaydetme</h2>
+
+<p>F3 ardından F2 basarak çıkıyoruz.</p>
+
+<h1 id="httpd-konfigurasyonu">HTTPD Konfigurasyonu</h1>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>nano /etc/httpd/conf/httpd.conf
+
+</code></pre></div></div>
+
+<h2 id="httpd-düzenleme">HTTPD Düzenleme</h2>
+
+<p>dosyasının en altına şu kodu yapıştırıyoruz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>
+<span class="c"># Virtual hostsInclude conf/extra/httpd-vhosts.conf</span>
+
+</code></pre></div></div>
+
+<h2 id="yeni-vhost-dosyası">Yeni Vhost Dosyası</h2>
+
+<p>F3 enter F2 yaptıktan sonra bu dosyayı oluşturuyoruz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>nano /etc/httpd/conf/extra/httpd-vhosts.conf
+
+</code></pre></div></div>
+
+<h2 id="vhost-düzenleme">VHOST Düzenleme</h2>
+
+<p>bu dosyanın en altına yapıştırıyoruz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>ServerAdmin webmaster@baba.test
+DocumentRoot <span class="s2">"/srv/http/baba.test"</span>
+ServerName baba.test ServerAlias www.baba.test
+ErrorLog <span class="s2">"/var/log/httpd/baba.test-error_log"</span>
+CustomLog <span class="s2">"/var/log/httpd/baba.test-access_log"</span> common
+
+</code></pre></div></div>
+
+<p>standart kullanım bu şekilde ancak ben sadece documentroot ve servername kısmını kullanıyorum. İsterseniz kullanmak istemediklerinizin başına # işareti koyarsınız. Yada silebilirsiniz : )</p>
+
+<h1 id="apache-konfig-testi">Apache Konfig Testi</h1>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>apachectl configtest
+
+</code></pre></div></div>
+
+<p>komutunu çalıştırıp işlemleri test edebilirisniz. Ancak son bir işlem kaldı host dosyamıza bu urlmizi tanımlayacağız.</p>
+
+<h2 id="hosts-dosyası-düzenleme">Hosts Dosyası Düzenleme</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>nano /etc/hosts
+
+</code></pre></div></div>
+
+<p>bu dosyanın en altına</p>
+
+<h2 id="domain-tanıtımı">Domain Tanıtımı</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>127.0.0.1 baba.test
+
+</code></pre></div></div>
+
+<p>yazıp kaydediyorum, apache sunucumu yeniden başlatıyorum.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>systemctl restart httpd
+
+</code></pre></div></div>
+
+<h2 id="sonuç-">Sonuç ;)</h2>
+
+<p><img src="/assets/images/baba.test.webp" alt="its work" /></p>
+:ET

@@ -1,0 +1,53 @@
+I"W!<p><img src="/assets/images/ol_vbox_vagrant-min.webp" alt="Vagrant VirtualBox Windows Linux Güncelleme" />11 Aralık 2019 tarihinde Virtualbox’un yeni sürümü yayınlandı. Bu yayınlama ile birlikte vagrant ile virtualbox arasında bir uyumsuzluk sorunu oldu. Vagrant’ı çalıştırdığınızda karşınıza şu ileti gelmekteydi :</p>
+
+<!-- excerpt separator -->
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>&lt;The provider <span class="s1">'virtualbox'</span> that was requested to back the machine
+<span class="s1">'homestead'</span> is reporting that it isn<span class="s1">'t usable on this system.
+Thereason is shown below:Vagrant has detected that you have a version of VirtualBox installed
+that is not supported by this version of Vagrant. Please install one of
+the supported versions listed below to use Vagrant:
+4.0, 4.1, 4.2, 4.3, 5.0, 5.1, 5.2, 6.0
+A Vagrant update may also be available that adds support for the version
+br /&gt;you specified. Please check www.vagrantup.com/downloads.html to download the latest version.
+
+</span></code></pre></div></div>
+
+<p>6.0 dan sonrası için henüz gerekli işlemler yapılmamıştı. Bende bu uyarıyı güncellemeden sonra aldım. Güncellemeden sonra O<strong>racle</strong> gerekli makaleyi <strong>yayınlamıştı</strong>,bu sayede beni bir dertten kurtardılar.</p>
+
+<ol>
+  <li>/opt/vagrant/embedded/gems/2.2.6/gems/vagrant-2.2.6/plugins/providers/virtualbox/driver/meta.rb dosyasına açalım ve şu satırı ekleyelim</li>
+</ol>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="o">&lt;</span><span class="vi">@logger</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="s2">"Finding driver for VirtualBox version: </span><span class="si">#{</span><span class="vc">@@version</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">driver_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"4.0"</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Version_4_0</span><span class="p">,</span><span class="s2">"4.1"</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Version_4_1</span><span class="p">,</span><span class="s2">"4.2"</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Version_4_2</span><span class="p">,</span><span class="s2">"4.3"</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Version_4_3</span><span class="p">,</span><span class="s2">"5.0"</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Version_5_0</span><span class="p">,</span><span class="s2">"5.1"</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Version_5_1</span><span class="p">,</span><span class="s2">"5.2"</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="no">Version_5_2</span><span class="p">,</span><span class="o">&lt;</span><span class="n">br</span> <span class="sr">/&gt;"6.0" =&amp;gt; Version_6_0,
+"6.1" =&amp;gt; Version_6_1,}
+
+</span></code></pre></div></div>
+
+<p>yeşil renkle belirtiğim satırıcı ekleyin. Eğer windows kullanıyorsanız bu dosya <strong>C:\HashiCorp\Vagrant\embedded\gems\2.2.6\gems\vagrant-2.2.6\plugins\providers\virtualbox\driver</strong> içerisindedir.(Kaydetme sorunları yaşamamak için kullandığınız not defteri yada editoru yönetici olarak açın.)</p>
+
+<ul>
+  <li>Yine aynı dizinin içerisinde <strong>version_6_1.rb</strong> adlı dosya oluşturmalıyız. Cem Yılmaz’ın dediği gibi burada oluşturulmuşu var = &gt; Bu dosyaya <a href="http://www.coter.net/upload/version_6_1.rb">buradan ulaşabilirsiniz</a> + <a href="http://www.mediafire.com/file/wzq4l2xe6ul2dnw/version_6_1.rb/file">Alternatif</a></li>
+  <li>Bu işlemden sonra bir üst dizinde ki</li>
+  <li><strong>plugin.rb</strong> dosyasını açıyoruz. Ve şu satırı ekliyoruz :</li>
+</ul>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="chroma"><code>  <span class="o">&lt;</span><span class="c1"># Drop some autoloads in here to optimize the performance of loading</span>
+<span class="c1"># our drivers only when they are needed.</span>
+<span class="k">module</span> <span class="nn">Driver</span>
+<span class="nb">autoload</span> <span class="ss">:Meta</span><span class="p">,</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../driver/meta"</span><span class="p">,</span> <span class="o">**</span><span class="no">FILE</span><span class="o">**</span><span class="p">)</span>
+<span class="nb">autoload</span> <span class="ss">:Version_4_0</span><span class="p">,</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../driver/version_4_0"</span><span class="p">,</span> <span class="o">**</span><span class="no">FILE</span><span class="o">**</span><span class="p">)</span>
+<span class="nb">autoload</span> <span class="ss">:Version_4_1</span><span class="p">,</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../driver/version_4_1"</span><span class="p">,</span> <span class="o">**</span><span class="no">FILE</span><span class="o">**</span><span class="p">)</span>
+<span class="nb">autoload</span> <span class="ss">:Version_4_2</span><span class="p">,</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../driver/version_4_2"</span><span class="p">,</span> <span class="o">**</span><span class="no">FILE</span><span class="o">**</span><span class="p">)</span>
+<span class="nb">autoload</span> <span class="ss">:Version_4_3</span><span class="p">,</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../driver/version_4_3"</span><span class="p">,</span> <span class="o">**</span><span class="no">FILE</span><span class="o">**</span><span class="p">)</span>
+<span class="nb">autoload</span> <span class="ss">:Version_5_0</span><span class="p">,</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../driver/version_5_0"</span><span class="p">,</span> <span class="o">**</span><span class="no">FILE</span><span class="o">**</span><span class="p">)</span>
+<span class="nb">autoload</span> <span class="ss">:Version_5_1</span><span class="p">,</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../driver/version_5_1"</span><span class="p">,</span> <span class="o">**</span><span class="no">FILE</span><span class="o">**</span><span class="p">)</span>
+<span class="nb">autoload</span> <span class="ss">:Version_5_2</span><span class="p">,</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../driver/version_5_2"</span><span class="p">,</span> <span class="o">**</span><span class="no">FILE</span><span class="o">**</span><span class="p">)</span>
+<span class="nb">autoload</span> <span class="ss">:Version_6_0</span><span class="p">,</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../driver/version_6_0"</span><span class="p">,</span> <span class="o">**</span><span class="no">FILE</span><span class="o">**</span><span class="p">)</span>
+<span class="nb">autoload</span> <span class="ss">:Version_6_1</span><span class="p">,</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../driver/version_6_1"</span><span class="p">,</span> <span class="o">**</span><span class="no">FILE</span><span class="o">**</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>Bu işlemlerden sonra vagrant ınızı çalışması gerekli :) Eğer hata alırsanız yorumlamaktan çekinmeyin 👍💗</p>
+:ET

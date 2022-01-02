@@ -1,9 +1,0 @@
-{% if page.tags %}
-{% assign sortedTags = page.tags | sort %}
-<div class="tags">
-  {% for tag in sortedTags %}
-  <a class="tag-link" href="/{{ site.tag_page_dir }}/{{ tag | slugify: 'pretty' }}" title="{{ tag | downcase }} tag">{{
-    tag }}</a>
-  {% endfor %}
-</div>
-{% endif %}

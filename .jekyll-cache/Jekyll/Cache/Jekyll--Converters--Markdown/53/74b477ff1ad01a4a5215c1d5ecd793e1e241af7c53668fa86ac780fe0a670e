@@ -1,0 +1,155 @@
+I":<p>Phpstorm içerisinde terminali kullanabilmek için <strong>ortam değişken</strong>lerine yolu belirtmemiz gereklidir. Windows ortamında ortam değişkeni eklemek için :</p>
+
+<p><!-- excerpt separator --></p>
+
+<div class="box">
+  <p>Bu <strong>phpstorm</strong> serisinin 1. yazısıdır Toplamda 3 bölümden oluşmaktadır.</p>
+
+  <ul class="directory-list">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <i>PHPStorm içerisinde cmder kullanmak</i>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/phpstorm-icerisinde-phpcsfixer/">Phpstorm içerisinde CS Fixer Kullanmak</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/laravel-ide-helper-kullanimi/">Laravel ide helper kullanımı</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+<ul>
+  <li>
+    <p>Bilgisayarıma sağ tıklayıp <strong>özellikler</strong> ardından <strong>gelişmiş sistem ayarları</strong> na tıklayınız.
+<strong>Başlangıç ve Kurtarma</strong> nın hemen altında <strong>ortam değişkenleri</strong>ni göreceksiniz. Ortam değişkenlerine tıklayıp yeni ‘ye tıklayın</p>
+
+    <p><img src="/assets/images/ortam_degiskenleri1.webp" alt="ortam_degiskenleri_windows10" /></p>
+  </li>
+  <li>değişken adı kısmına : CMDER_ROOT</li>
+  <li>yol kısmına : C:\cmder</li>
+</ul>
+
+<p><img src="/assets/images/ortam_degiskenleri3.webp" alt="ortam_degiskenleri_windows10" /></p>
+
+<p>Ben Cmder’in full sürümünü indirip c dizinine çıkarmıştım. Siz nereye kurduysanız o dizini gösterirsiniz.</p>
+
+<p><img src="/assets/images/ortam_degiskenleri2.webp" alt="ortam_degiskenleri_windows10" /></p>
+
+<p>Daha sonra phpstorm içerisinden ayarlara girin. <strong>Tools</strong> altında ki <strong>Terminal</strong> menüsüne tıklayın. <strong>Shell Path</strong> kısmına</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="s2">"cmd"</span> /k <span class="s2">""</span>%CMDER_ROOT%<span class="se">\v</span>endor<span class="se">\i</span>nit.bat<span class="s2">""</span>
+
+</code></pre></div></div>
+
+<p>kodunu yapıştırın.</p>
+
+<p><img src="/assets/images/phpstorm_terminal.webp" alt="phpstorm_cmder_full" /></p>
+
+<p>Ayarları uyguladıktan sonra phpstormu yeniden başlatın. Phpstorm yeniden açıldıktan sonra terminal sekmesine tıklayın.</p>
+
+<p><img src="/assets/images/phpstorm_terminal2.webp" alt="phpstorm_cmder_full" /></p>
+
+<p>Cmder terminali windows kullanan arkadaşlara tavsiye ederim. <a href="https://cmder.net/" target="\_blank" rel="noopener noreferrer">https://cmder.net/</a> adresinden full sürümünü indirip istediğiniz dizine çıkartabilirsiniz.</p>
+:ET

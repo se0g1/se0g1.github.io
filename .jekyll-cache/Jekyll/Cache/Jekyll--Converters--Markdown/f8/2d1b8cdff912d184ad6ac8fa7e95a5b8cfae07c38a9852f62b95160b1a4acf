@@ -1,0 +1,17 @@
+I"�
+<p>Merhaba mysql (phpmyadmin) deki tablodaki satırları toplamak için keşfettiğim basit ve harika fonksiyonun kullanımı göreceğiz. Chart olarak en sevdiğim eklentilerden birisi olan <a href="http://morrisjs.github.io/morris.js/" target="\_blank" rel="noopener noreferrer">morris.js</a> PDO içerisinde kullanımınında görmüş olacağız.</p>
+
+<!-- excerpt separator -->
+
+<p><img src="/assets/images/php_morris.webp" alt="php_morris_js" /></p>
+
+<p>resimde ki gibi ben burada <strong>hesap_toplam</strong> ve <strong>hesap_odenen</strong> hücrelerinin toplamını alıp <strong>morris.js</strong> deki grafiğe dönüştürmek istiyorum.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nc">Morris</span><span class="mf">.</span><span class="nf">Donut</span><span class="p">({</span> <span class="n">element</span><span class="o">:</span> <span class="s1">'morris-donut-chart'</span><span class="p">,</span> <span class="n">data</span><span class="o">:</span> <span class="p">[</span> <span class="nv">$kac_tane</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="nf">query</span><span class="p">(</span><span class="s2">"SELECT sum(hesap_toplam) AS toplagel FROM  hesaplar"</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">fetch</span><span class="p">();</span>  <span class="nv">$kac_bane</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="nf">query</span><span class="p">(</span><span class="s2">"SELECT sum(hesap_odenen) AS bulgel FROM hesaplar"</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">fetch</span><span class="p">();</span>  <span class="nv">$toplam</span> <span class="o">=</span> <span class="nv">$kac_tane</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>  <span class="nv">$cik</span>    <span class="o">=</span> <span class="nv">$kac_bane</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>  <span class="k">echo</span> <span class="s1">' {label: "Toplam Borçlar",   value:'</span><span class="mf">.</span><span class="nv">$toplam</span><span class="mf">.</span><span class="s1">'},'</span><span class="p">;</span> <span class="k">echo</span> <span class="s1">' {label: "Toplam Ödemeler", value:'</span><span class="mf">.</span><span class="nv">$cik</span><span class="mf">.</span><span class="s1">'}'</span><span class="p">;</span> <span class="cp">?&gt;</span> ]});
+
+</code></pre></div></div>
+
+<p>umarım anlaşılmıştır anlaşılmayan bir nokta olursa sorularınızı yorumlayabilirsiniz :)</p>
+
+<p><img src="/assets/images/php_morris_grafik.webp" alt="php_morrisjs_graphical" /></p>
+:ET

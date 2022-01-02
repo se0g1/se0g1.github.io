@@ -1,0 +1,87 @@
+I"$<p>Merhaba, Shopt komutu nedir ? Shopt komutu shell(kabuk) bazı eylemlerini değiştirmenize yarar. Bir nevi alias komutu gibi işlev görür Bir örnek verip daha fazla açmak gerekirse : Bir dizine</p>
+
+<!-- excerpt separator -->
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">cd </span>dizin
+
+</code></pre></div></div>
+
+<p>komutuyla girerken,bashrc içerisine ekleyeceğiniz shopt komutuyla direkt olarak <strong>dizin</strong> ismini yazıp girebilirsiniz. Tabi ki shopt bunlarlada sınırlı değil. <a href="https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html">Detaylar</a></p>
+
+<h1 id="zsh-i̇çerisinde-kullanım">Zsh İçerisinde Kullanım</h1>
+
+<p>Shopt bash temelli çalıştığı için zsh shelli içerisinde doğal olarak <strong>‘shopt’ command not found</strong> hatasını veriyor.</p>
+
+<h2 id="çözüm">Çözüm</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">touch shopt</span>
+</code></pre></div></div>
+
+<p>içerisine şunu yapıştırın.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="c">#!/bin/bash</span>
+<span class="nv">args</span><span class="o">=</span><span class="s1">''</span><span class="p">;</span>
+<span class="k">for </span>item <span class="k">in</span> <span class="nv">$@</span>
+<span class="k">do
+</span><span class="nv">args</span><span class="o">=</span><span class="s2">"</span><span class="nv">$args</span><span class="s2"> </span><span class="nv">$item</span><span class="s2">"</span><span class="p">;</span>
+<span class="k">done
+</span><span class="nb">shopt</span> <span class="nv">$args</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<p>daha sonra bu dosyayı</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo mv shopt</span> /usr/bin/
+</code></pre></div></div>
+
+<p>daha sonra .zshrc içerisine</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">alias shopt</span><span class="o">=</span><span class="s1">'/usr/bin/shopt'</span>
+
+</code></pre></div></div>
+
+<p>komutunu ekleyelim. Afiyet olsun 😊</p>
+
+<h2 id="ek-bilgiler">Ek Bilgiler</h2>
+
+<p>Yedek alırken, BIN kısmına oluşturduğunuz scriptleri shelleri unutuyorsanız(sistem taşırken ben unutuyorum 🤣 )</p>
+
+<ul>
+  <li><a href="https://github.com/yuceltoluyag/otoscript">Oto Script Oluşturucuyu</a> deneyebilirsiniz.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">alias shopt</span><span class="o">=</span><span class="s1">'ScriptDizinim/shopt'</span>
+</code></pre></div></div>
+
+<p>Yararlanılan Kaynak : <a href="https://github.com/larz258/Zshopt">larz258</a></p>
+
+<p>Benim Shopt ayarlarım zsh yada bashrc içerisine ekleyerek test edebilirsiniz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="c">#shell opts</span>
+<span class="nb">shopt</span> <span class="nt">-s</span> autocd
+<span class="nb">shopt</span> <span class="nt">-s</span> cdspell
+<span class="nb">shopt</span> <span class="nt">-s</span> cmdhist
+<span class="nb">shopt</span> <span class="nt">-s</span> histappend
+<span class="nb">shopt</span> <span class="nt">-s</span> expand_aliases
+<span class="nb">shopt</span> <span class="nt">-s</span> checkwinsize
+<span class="nb">shopt</span> <span class="nt">-s</span> globstar 2&gt; /dev/null
+<span class="nb">shopt</span> <span class="nt">-s</span> nocaseglob
+<span class="nb">shopt</span> <span class="nt">-s</span> autocd 2&gt; /dev/null
+<span class="nb">shopt</span> <span class="nt">-s</span> dirspell 2&gt; /dev/null
+<span class="nb">shopt</span> <span class="nt">-s</span> cdspell 2&gt; /dev/null
+
+</code></pre></div></div>
+
+<div class="details admonition tip open">
+  <div class="details-summary admonition-title"><svg class="maicon icon icon-diamonds">
+    <use xlink:href="#icon-diamonds"></use>
+  </svg>Güncelleme<svg class="details-icon icon icon-circle-right">
+    <use xlink:href="#icon-circle-right"></use>
+  </svg></div>
+  <div class="details-content">
+    <div class="admonition-content"><p><a href="https://github.com/yuceltoluyag/dotfiles/blob/master/dotfiles/zshrc" target="_blank" rel="noopener noreferrer">zsh ayarlarım!</a> +  <a href="https://github.com/yuceltoluyag/otoscript" target="_blank" rel="noopener noreferrer">Script Oluşturucu!</a></p>
+</div>
+  </div>
+</div>
+
+:ET

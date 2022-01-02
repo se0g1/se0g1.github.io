@@ -1,0 +1,67 @@
+I"4<p>Merhaba, Open Broadcaster Software Video kaydetme ve canlı yayınyapma konusunda en iyi uygulamalardan bir tanesidir. Linux tarafında uygulamaya nasıl eklenti eklenip aktif edileceği hususunda Türkçe kaynak bulunmadığı için, bu rehberi hazırlamaya karar verdim. OBS nasıl kullanılır anlatmayacağım çünkü bu konuda yeterince Türkçe kaynak var..</p>
+
+<!-- excerpt separator -->
+
+<h1 id="kurulum">Kurulum</h1>
+
+<p>OBS plugin ekleyip test olarak Discord StreamKit entegre edeceğiz.</p>
+
+<div class="details admonition tip open">
+  <div class="details-summary admonition-title"><svg class="maicon icon icon-diamonds">
+    <use xlink:href="#icon-diamonds"></use>
+  </svg>Güncelleme<svg class="details-icon icon icon-circle-right">
+    <use xlink:href="#icon-circle-right"></use>
+  </svg></div>
+  <div class="details-content">
+    <div class="admonition-content"><p>Artık Linux Browser Eklentisi varsayılan olarak gelmektedir.Ayrıca Yüklemenize Gerek Yoktur !</p>
+</div>
+  </div>
+</div>
+
+<ul>
+  <li><del><a href="https://github.com/bazukas/obs-linuxbrowser/releases" target="\_blank" rel="noopener noreferrer">obs-linuxbrowser</a></del></li>
+  <li><a href="https://discordapp.com/streamkit" target="\_blank" rel="noopener noreferrer">discordstreamkit</a></li>
+</ul>
+
+<p>Bu işlemleri ellede yapabilirsiniz. Ben terminal üzerinden yapmayı tercih ediyorum.</p>
+
+<font color="white">! Bu kısmı atlayın.</font>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>wget https://github.com/bazukas/obs-linuxbrowser/releases/download/0.6.1/linuxbrowser0.6.1-obs23.0.2-64bit.tgz
+<span class="nb">mkdir</span> <span class="nt">-p</span> <span class="nv">$HOME</span>/.config/obs-studio/plugins
+<span class="nb">tar </span>xfvz linuxbrowser0.6.1-obs23.0.2-64bit.tgz <span class="nt">-C</span> <span class="nv">$HOME</span>/.config/obs-studio/plugins/
+</code></pre></div></div>
+
+<font color="white">Bu kısmı atlayın!!</font>
+
+<p><img src="/assets/images/linux_browser.webp" alt="obs linux browser" /></p>
+
+<h2 id="ne-yaptık">Ne Yaptık</h2>
+
+<p>Burada yaptığım işlem dosyayı indirdim. Ev dizinim altındaki .config dosyam içerisinde ki obs-studio içerisine plugins klasörü oluşturdum. Farklı bir eklenti ekleyeceksem bu dosyanın içerisine atmam yeterlidir.</p>
+
+<h1 id="kullanım">Kullanım</h1>
+
+<p>OBS açıyoruz Kaynaklar + tuşuna basıp Linux Browser i Seçiyoruz</p>
+
+<p><img src="/assets/images/linux_browser_kaynaklar.webp" alt="linux_browser_kaynaklar" /></p>
+
+<p>Stream Kits linki üzerinde sayfanın en altında bulunan obs-&gt;connect discorda basıyorum
+<img src="/assets/images/linux_browser_discord.webp" alt="linux_browser_discord" /></p>
+
+<p>Install For OBS butonuna tıklıyoruz</p>
+
+<p><img src="/assets/images/linux_browser_obs.webp" alt="linux_browser_obs" /></p>
+
+<p>Gelen Ekranda Serverimi Seçip Ses - Yazı seçeneklerinde hangisini isterseniz eklersiniz
+<img src="/assets/images/linux_browser_obs_custom.webp" alt="linux_browser_obs_custom.webp" /></p>
+
+<p>Açtığımız Linux Browser Url Kısmına Linkimizi Yapıştırıyoruz. İsterseniz yükseklik genişlik hatta css bilginizle dahada güzelleştirebilirsiniz
+<img src="/assets/images/linux_browser_settings.webp" alt="linux_browser_settings" /></p>
+
+<p><img src="/assets/images/linux_browser_final.webp" alt="linux_browser_final" /></p>
+
+<h1 id="linux-discord-sunucumuz">Linux Discord Sunucumuz</h1>
+
+<p>Bu arada discord sunucumuza katılmak isterseniz <a href="https://discordapp.com/invite/da3Su8s" target="\_blank" rel="noopener noreferrer">Discord Sunucuma Katıl</a></p>
+:ET

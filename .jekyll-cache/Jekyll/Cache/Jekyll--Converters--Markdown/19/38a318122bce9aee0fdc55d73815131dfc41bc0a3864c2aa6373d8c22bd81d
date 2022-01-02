@@ -1,0 +1,68 @@
+I"�<p>Merhaba, uzun süredir fish shell kullanıyordum. Oh my zsh deneyimlemek istedim. Kurulumda ve kullanımda bir kaç hata(bug) gibi şeylerle karşılaştım. Maalesef yeterince açıklayıcı Türkçe kaynak bulamadım. Resmi ve reposundan arakladığım bilgiler ile tertemiz bir kurulum gerçekleştirdim.</p>
+
+<!-- excerpt separator -->
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>zsh <span class="c">#debian</span>
+<span class="nb">sudo </span>pacman <span class="nt">-S</span> zsh <span class="c">#arch based</span>
+
+</code></pre></div></div>
+
+<p>Şimdi resmi sitesinde ki ister <strong>curl</strong> ister <strong>wget</strong> li kısmını indirebiliriz. Ben <strong>curl</strong> kullandım.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>sh <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh<span class="si">)</span><span class="s2">"</span>chsh <span class="nt">-s</span> /usr/bin/zsh
+</code></pre></div></div>
+
+<h1 id="bilgilendirme">Bilgilendirme</h1>
+
+<p>Bu işlem default shellimizi değiştirecek. Yani varsayılan olarak zsh çalışacak-&gt; Sonraki adımda Şifrenizi yazınız, ve <strong>bilgisayarı yeniden</strong> başlatınız.
+Bu adımda ne yapsanızda shelliniz değişmiyor ise izlemeniz gereken iki yol var.</p>
+
+<p>-&gt; Öncelikle daha önce <strong>fish</strong> vb terminal eklentilerini kurduysanız genelde bu sorun bundan kaynaklanıyor. Ben <strong>fish</strong> yerine farklı bir plugin kullanmak istediğimden ötürü bu hata ile karşılaşıyordum.</p>
+
+<p>chsh — s /usr/bla/blashell shelinizi değiştirmeye çalıştığınızda saçma bu hatayı verecektir,Terminal için kabuğu değiştirmemelisiniz</p>
+
+<ol>
+  <li>sudo subl /etc/passwd (subl yerine nano gedit vs de kullanabilirsiniz )</li>
+  <li>/bin/zsh veya değiştirmek istediğiniz pluginin kısa adı ne ise onu yazıyorsunuz. resimde gördüğünüz 1 ve 40 satırdaki kodları zsh olarak değiştiriniz. Sizde farklı yerde olabilir. <img src="/assets/images/oh_my_zsh.webp" alt="oh-my-zsh" /></li>
+</ol>
+
+<font color="orange"> manuel olarak işlemi gerçekleştirdik. Pek sağlıklı bir yöntem değildir lakin fazla bilgi göz çıkarmaz 😅 </font>
+
+<font color="red"> Geçiş işlemlerinde kullandığınız uygulamayı direkt silmeye yeltenmeyin. Örneğin sistemde zsh veya fish kullanıyorsunuz diyelim, bunları kaldırayım başa döneyim istediniz kesinlikle direkt silip nasılsa başlangıca döner mantığıyla düşünmeyin. Son kullanıcıysanız veya temel bilgiye sahipseniz bu durum sizi sıkıntıya sokabilir.😅 Bu sizden eğer shell uygulaması değiştirilecekse önce **chsh — s** bash(örnek) komutuyla değiştirilir. Sistem yeniden başlatılır ve daha sonra zsh,fish kaldırılır. </font>
+
+<p>Yada ev dizininde .bashrc dosyasını açın en alt satıra (yada .bash_profile)</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="k">if</span> <span class="o">[[</span><span class="nv">$-</span> <span class="o">==</span> <span class="k">*</span>i<span class="k">*</span><span class="o">]]</span><span class="p">;</span> <span class="k">then </span><span class="nb">export </span><span class="nv">SHELL</span><span class="o">=</span>zsh <span class="nb">exec </span>zsh <span class="nt">-l</span> afi
+
+</code></pre></div></div>
+
+<p>yazarak kaydedin terminalizi yeniden başlatın.</p>
+
+<h2 id="oh-my-zsh-tema-kurulumu">Oh My ZSH tema kurulumu</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>subl ~/.zshrc <span class="c"># subl yerine nano gedit vs kullanabilirsiniz.</span>
+</code></pre></div></div>
+
+<p>10 satırdaki ZSH_THEME=”robbyrussell” tırnak işareti yerine <a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes" target="\_blank" rel="noopener noreferrer">ZSH temaları</a> bu adresteki beğendiğimiz temanın kısa adını yazıyoruz. Örneğin ZSH_THEME=”agnoster”</p>
+
+<h3 id="oh-my-zsh-eklenti-kurulumu">Oh My ZSH eklenti kurulumu</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>subl ~/.zshrc <span class="c"># subl yerine nano gedit vs kullanabilirsiniz.</span>
+
+</code></pre></div></div>
+
+<p>54 satırdaki plugins=(git) varsayılan olarak gelir. <a href="https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins" target="\_blank" rel="noopener noreferrer">ZSH eklentileri</a> buradan beğendiğiniz eklentinin ismini boşluk bırakarak dosyaya yazmanız yeterli örneğin</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nv">plugins</span><span class="o">=(</span>git extract<span class="o">)</span>
+</code></pre></div></div>
+
+<p>burada dosya çıkartma eklentisini aktif etmiş oldum. Kaydedip çıktıktan sonra</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">source</span> ~/.zshrc
+
+</code></pre></div></div>
+
+<p>komutunu terminalde çalıştırın tamamdır. Yada terminali kapatıp açabilirsiniz.</p>
+
+<p>Aklınıza takılan soru ve sorunlar için yorum bırakmanız yeterlidir. Sağlıcakla 🤗</p>
+:ET

@@ -1,0 +1,163 @@
+I"�1<h1 id="merhaba">Merhaba</h1>
+
+<p>Merhaba, uzun zamandır yazmak istediğim konulardan birisiydi..😊 Çünkü <strong>nvidia</strong> kartlarının kurulumu konusunda Türkçe kaynak olarak bilgiler var ancak kurduğunuz sürücünün performansını beğenmediğinizde : “ <strong>Ya linux ta nvida da tam verimli çalışmıyormuş” galiba</strong> diyorsunuz. Aslında burada ki hata site editörlerinin <strong>3D,render,oyun</strong> vb gibi teknolojilerle uğraşmaması olabilir. Belki de adam sadece kod yazıyordur. Benim size anlatacağım konuda ise <strong>performans</strong> sıralaması olacak. Sözü çok uzatmadan kurulumlara geçelim. 😁</p>
+
+<!-- excerpt separator -->
+
+<h2 id="kartınızın-durumunu-öğrenme-">Kartınızın Durumunu öğrenme ?</h2>
+
+<ul>
+  <li>Terminalinizi açıp şu komutu yapıştırın.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>lspci <span class="nt">-k</span> | <span class="nb">grep</span> <span class="nt">-A</span> 2 <span class="nt">-E</span> <span class="s2">"(VGA|3D)"</span>
+
+</code></pre></div></div>
+
+<p>Bende ki sonuçlar ise şöyle : Nvidia Quadro 2000M kullanıyorum.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>00:02.0 VGA compatible controller: Intel Corporation 2nd Generation Core Processor Family Integrated Graphics Controller <span class="o">(</span>rev 09<span class="o">)</span>
+Subsystem: Lenovo 2nd Generation Core Processor Family Integrated Graphics Controller
+Kernel driver <span class="k">in </span>use: i915
+<span class="nt">--</span>
+01:00.0 VGA compatible controller: NVIDIA Corporation <span class="k">**</span>GF106GLM<span class="k">**</span> <span class="o">[</span>Quadro 2000M] <span class="o">(</span>rev a1<span class="o">)</span>
+Subsystem: Lenovo <span class="k">**</span>GF106GLM<span class="k">**</span> <span class="o">[</span>Quadro 2000M]
+Kernel driver <span class="k">in </span>use: nvidia
+</code></pre></div></div>
+
+<p>GF106 olarak işaretlediğim kısım kartınıızn ailesini(kod adı) belirtiyor. <a href="https://nouveau.freedesktop.org/wiki/CodeNames/{:target=&quot;\_blank&quot;}{:rel=&quot;noopener noreferrer&quot;}">Nvidia Grafik Kartı Kod Adı Öğrenme</a> Siteye göre benim kartım Fermi ailesindenmiş.</p>
+
+<h2 id="kartın-desteklendiğini-sürümü-öğrenmek">Kartın Desteklendiğini sürümü öğrenmek</h2>
+
+<p><a href="https://www.nvidia.com/en-us/drivers/unix/legacy-gpu/" target="\_blank" rel="noopener noreferrer">Nvdia Eski Kartlar</a> Bu listede kartınız varsa muhtemelen artık yeni nesil sürücüleri kuramayacaksınız. Kursanız dahi kullanım aşamasında hatalarla boğuşmaya hazır olun. Belki de kullanıcıların en çok yanlış yaptığı yer burasıdır. Sizin grafik sürücünüz 340xx sürümünde desteğini kesmiştir ama siz gidip en son grafik sürücünü kurmaya çalışıyorsunuz. Örneğin archlinux ta <strong>nvidia</strong> paketiyle <strong>nvidia-xxx</strong> paketi arasında dağlar kadar fark vardır. Site üzerinde benim kartımın <strong>Quadro 2000M 0DDA</strong> bilgileri verilmiş. Şimdi sırada en son hangi driveri yayımlanmışşa o paketi bulmakta, bunun için nvdia sürücü indirme kısmından yararlabiliriz.</p>
+
+<ul>
+  <li><a href="https://www.nvidia.com/Download/index.aspx" target="\_blank" rel="noopener noreferrer">Nvidia Sürücü İndirme</a> Adresine gidip,doğru şekilde seçimlerinizi yaptıktan sonra arama kısmına basın size en son yayımlanan sürücüyü getirecektir. Çıkan sonuca göre benim sürücüm 390.1320 dır. Benim aurda nvidia-390xx paketlerine bakmam gerektiğini gösteriyor. <a href="https://wiki.archlinux.org/index.php/NVIDIA#Installation" target="\_blank" rel="noopener noreferrer">Archlinux Nvidia Belge</a> sine baktığınızda 390xx ve 340xx için sürücüleri için ayrı paketler var.</li>
+</ul>
+
+<p><img src="/assets/images/nvidia-grafik-karti-indirme.webp" alt="Nvidia_Sürücü_Seçme" />
+<img src="/assets/images/nvidia-grafik-karti-indirme2.webp" alt="Nvidia_Sürücü_Bilgisi" /></p>
+
+<h2 id="hangisi-nouveauoptimusprimebumblebee">Hangisi Nouveau,Optimus,Prime,Bumblebee</h2>
+
+<p><strong>Dipnot</strong> : Geçiş durumlarında kullanmasanız dahi bbswitch,nouveau kullanılması gerekebiliyor.</p>
+
+<ul>
+  <li><strong>Nouveau</strong> : Açık kaynak sürücülerdir. Eğer ki grafik tarafında çok fazla işlemleriniz yoksa kullanabilirsiniz. (Prime veya optimus kullanırken gerektiği durumlar olabiliyor)</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> xf86-video-intel mesa xf86-video-nouveau <span class="c"># paketlerini kurabilirsiniz</span>
+
+</code></pre></div></div>
+
+<p><strong>Optimus</strong> : Bilgisayarınızda hem intel hemde harici bir ekran kartı varsa optimus teknolojisi var demektir. Bu tekonolojinin amacı pil ömrü,performans gerektiren uygulamalarda harici karta geçiş yapmak için kullanılır. Nouveau göre daha performanslıdır(2D-3D) uygulamalar açabilirsiniz. Geçiş için aşağıda ki methodlar kullanılmaktadır.</p>
+
+<ul>
+  <li>PRIME (Tavsiyem)</li>
+  <li>nouveau</li>
+  <li>Bumblebee]</li>
+  <li>nvidia-xrun</li>
+  <li>optimus-manager (tavsiyem yardımcı program)</li>
+</ul>
+
+<p><strong>Prime</strong> : Oyun,render,gpu gerektiren işlemlerde tam performans çalışabileceğiniz sürücüdür.</p>
+
+<p>Benim kartım gibi 390 sürümüne sahip olanlar var ise şu paketleri kurmalıdır.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>nvidia-390xx nvidia-390xx-settings nvidia-390xx-utils opencl-nvidia-390xx lib32-nvidia-390xx-utils lib32-opencl-nvidia-390xx
+</code></pre></div></div>
+
+<p>daha sonra</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>yay <span class="nt">-S</span> optimus-manager optimus-manager-qt
+
+</code></pre></div></div>
+
+<p>Kurulum tamamlandıktan sonra</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>systemctl <span class="nb">enable </span>optimus-manager.service
+</code></pre></div></div>
+
+<p>Sistemi yeniden başlatıyorsunuz. Sistem yeniden başladıktan sonra ister optimus-manager-qt programı çalıştırıp elle geçiş yapın,isterseniz terminal aracılığıyla geçiş yapın.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nv">$ </span>optimus-manager <span class="nt">--switch</span> intel <span class="c"># Intel Grafik Kartı</span>
+<span class="nv">$ </span>optimus-manager <span class="nt">--switch</span> nvidia <span class="c"># NVIDIA Grafik kartı</span>
+<span class="nv">$ </span>optimus-manager <span class="nt">--switch</span> hybrid <span class="c"># Hibrit Grafik (xorg-server paketi gereklidir)</span>
+<span class="nv">$ </span>optimus-manager <span class="nt">--switch</span> auto <span class="c"># Otomatik Geçiş)</span>
+
+</code></pre></div></div>
+
+<p>Dilerseniz sistem başlangıcında hangi kartın seçileceğini belirtebilirsiniz.Seçtiğiniz kart otomatik olarak aktif edilebilir.Bu ayarı yine optimus-manager-qt içerisindende yapabilirsiniz. Terminal den yapmak içinse</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nv">$ </span>optimus-manager <span class="nt">--set-startup</span> intel <span class="c"># Intel Grafik Kartıyla açılır</span>
+<span class="nv">$ </span>optimus-manager <span class="nt">--set-startup</span> nvidia <span class="c"># NVIDIA Grafik kartıyla açılır</span>
+<span class="nv">$ </span>optimus-manager <span class="nt">--set-startup</span> hybrid <span class="c"># Hibrit Grafik seçeneği ile başlar (xorg-server paketi gereklidir)</span>
+</code></pre></div></div>
+
+<p>Opsiyonel olarak</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>yay <span class="nt">-S</span> nvdock
+
+</code></pre></div></div>
+
+<p>paketini kuralabilirsiniz. Tavsiyede ederim. Kartın çalışıp çalışmadığını,gerekli ayarları alternatif olarak buradanda görebilirsiniz.</p>
+
+<h2 id="unutmadan">Unutmadan</h2>
+
+<p>Geçişler esnasında oturup kapatılır ve yeniden giriş yaparsınız. Eğer Prime kullanmak istiyorsanız öncedende farklı kurulumlar yaptıysanız(bumble) gibi prime ile çakışabilir. Bu yüzden önce ki ayarları ve programları silmeniz gerekmektedir. Her hangi birisinin konfigurasyon dosyası kalsa dahi sorunlara yol açabiliyor. Üçüncü parti uygulamlarda bu sorunlara yol açabiliyor, nvdock tarzı bir uygulama sistem başlangıcında aktif olarak başlıyorsa buda geçişler esnasında sorunlar yaratabiliyor. Bize yukarda önerdin ama hata veriyor diyorsun ?! Evet kuracaksın ancak sistem başlangıcında otomatik olarak açılmayacak ,geçişlerini yaptıktan sonra elle açıcaksın. Bu sebeble temiz bir kurulum çok önemlidir. Sistemi kurduktan sonra ilk işiniz sisteminize uygun nvidia sürücülerinizi kurun, daha sonra yukarıda anlattığım gibi optimus-manageri kurun,keyfinize bakın :)</p>
+
+<h2 id="performans-ayarlarım">Performans Ayarlarım</h2>
+
+<p>Eğer nvidia ekran kartına geçtiğinizde ekran yırtılması,obs ile ilgili sorunlar,taşıma problemleri yaşıyorsanız. Compton,picom,xcompgr gibi paketleri kapatın.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>killall picom compton xcompmgr
+</code></pre></div></div>
+
+<p>daha sonra</p>
+
+<p><img src="/assets/images/nvidia-linux-performans-ayari.webp" alt="Nvidia_Performans_Ayari" />
+tiklerini kaldırın. Daha sonra powermizer altında ki auto ayarını resimde ki gibi değiştirin. “Preferer maxium performance seçili”</p>
+
+<p><img src="/assets/images/nvidia-grafik-ayari-maximum-performans.webp" alt="Nvidia_Performans_Ayari" /></p>
+
+<p>buda verdiği performans bir de en altaki görselde bumblebee performansına bakın :D</p>
+
+<p><img src="/assets/images/primeperformansi.webp" alt="Nvidia_optirun_performansı" /></p>
+
+<p><strong>Bumblebee</strong> : Yerli yabancı tüm kaynaklardan <a href="https://wiki.archlinux.org/index.php/Bumblebee">Bumblebee Kurulumu</a> anlatılır. 26 Nisan 2013 son commitini almış <a href="https://github.com/Bumblebee-Project/Bumblebee">Bumblebee Github</a>. Yıla göre bakarsak en stabil buymuş gibi görünebilir fakat oyun oynayan,render yapan kısacası GPU’yu tam anlamıyla kullanmak isteyen arkadaşlar için verdiği performans tatmin edici gelmeyecektir.Benim ekran kartım için Bumblebee verdiği performans <strong>Windows ‘un yarısı kadardı</strong>, bu kimileri için yeterli olabilir ancak benim için değil :)</p>
+
+<p>390xx sürümüne sahip olanlar için</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> bumblebee mesa xf86-video-intel nvidia-390xx lib32-nvidia-390xx-utils bbswitch nvidia-390xx-utils
+
+</code></pre></div></div>
+
+<p>daha yeni bir sürücünüz var ise</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> bumblebee mesa xf86-video-intel nvidia lib32-nvidia-utils bbswitch nvidia-utils
+</code></pre></div></div>
+
+<p>paketleri kurduktan sonra kendimizi bumblebee grubuna dahil ediyoruz</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>gpasswd <span class="nt">-a</span> <span class="nv">$USER</span> bumblebee
+
+</code></pre></div></div>
+
+<p>Daha osnra bumblebee servisini aktif ediyoruz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>systemctl <span class="nb">enable </span>bumblebeed.service
+</code></pre></div></div>
+
+<p>daha sonra sistemi yeniden başlatıyoruz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>shutdown <span class="nt">-r</span> now
+
+</code></pre></div></div>
+
+<p><strong>Bumblebee</strong> performans vermesiniz istediğimiz uygulamalarda <strong>optirun uygulamaadi</strong> gibi başlatıyoruz. Örneğin <strong>optirun gputest</strong></p>
+
+<p>Dahili Gpu Performansı
+<img src="/assets/images/optirun-dahili-gpu.webp" alt="Nvidia_optirun_performansı" />
+Harici Gpu Performansı
+<img src="/assets/images/optirun-performansi.webp" alt="Nvidia_optirun_performansı" /></p>
+:ET

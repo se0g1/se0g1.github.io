@@ -1,0 +1,270 @@
+I"�+<h1 id="merhaba">Merhaba</h1>
+
+<p>Uzunca bir süre <strong>Feedly</strong> servisini kullandım,Bildirimleri terminal ekranından takip etmek işime daha çok geldiği için newsboat’a geçiş yaptım. Feedly bu süreçte spam mail,premium alsana koçum vs gibi rahatsız edici bildirimlerde bulunmadı.Dileyen feedly servisinide kullanabilir. Windows için QuiteRSS yi kullanabilirsiniz.</p>
+
+<!-- excerpt separator -->
+
+<h1 id="newsboat-nedir-">Newsboat nedir ?</h1>
+
+<p><img src="/assets/images/newsboaticerik.webp" alt="Newsboat" />
+Newsboat bir RSS / Atom besleme okuyucusudur. RSS ve Atom, haber, blog makalesi gibi makaleleri iletmek, yayınlamak ve bir araya getirmek için yaygın olarak kullanılan bir dizi XML biçimidir. Newsboat, Unix veya GNU / Linux, FreeBSD veya Mac OS X gibi Unix benzeri sistemlerde metin terminallerinde kullanılmak üzere tasarlanmıştır.</p>
+
+<h2 id="newsboat-kurulumu">Newsboat Kurulumu</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>yay <span class="nt">-S</span> newsboat mpv youtube-dl dunst
+
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Mpv</strong> , medya oynatıcıdır.(müzik,video vs) dilerseniz başka medya oynatıcılarda kullanabilirsiniz</li>
+  <li><strong>youtube-dl</strong> Eğer Rss içerisinde video varsa diye kullanacağız.</li>
+  <li><strong>Dunst</strong>, masaüstünde bildirimlerimiz görünsün diye kullanacağız. (i3-wm kullandığım için kuruyorum,eğer siz DE yani xfce gnome,kde vs kullanıyorsanız kurmanız gerek yoktur.)</li>
+</ul>
+
+<p>Yapılandırma,esnek olduğu için,çok farklı kullanımlar görebilirsiniz.
+– Kullanırken şu şekilde ayrım yapıyorum :</p>
+
+<ul>
+  <li>Haber siteleri</li>
+  <li>Youtube kanalları
+Burada hem haber siteleri,hem youtube kanalları için istersem tek config dosyası ve url dosya oluşturabilirim yada hepsini ayrıabilirim. Bu sayede her takip etmek istediğim Feed ‘lere ayrı ayrı konfigurasyonlar yapabiliyorum. Config dosyası ana dizinde .config klasörü içerisinde newsboat adlı klasörde bulunur. Yoksa oluşturursunuz.</li>
+</ul>
+
+<p>Yapılandırmam dosyam :</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>browser <span class="s2">"xdg-open"</span>
+
+macro o <span class="nb">set </span>browser <span class="s2">"/usr/bin/mpv %u &gt; /dev/null 2&gt;&amp;1 &amp;"</span> <span class="p">;</span> open-in-browser <span class="p">;</span> <span class="nb">set </span>browser <span class="s2">"xdg-open"</span>
+
+macro y <span class="nb">set </span>browser <span class="s2">"youtube-dl %u"</span><span class="p">;</span> open-in-browser <span class="p">;</span> <span class="nb">set </span>browser <span class="s2">"xdg-open"</span>
+
+<span class="c">#general stuff</span>
+
+show-read-articles <span class="nb">yes
+
+</span>show-read-feeds <span class="nb">yes
+
+</span>auto-reload <span class="nb">yes
+
+</span>cleanup-on-quit no
+
+max-items 100
+
+feed-sort-order title-desc
+
+mark-as-read-on-hover <span class="nb">yes
+
+</span>display-article-progress <span class="nb">yes
+
+</span>max-browser-tabs 10
+
+show-keymap-hint no
+
+feedlist-format <span class="s2">"%4i %9u %t"</span> <span class="c">#"%t %d %u %U %c %S %n"</span>
+
+articlelist-format <span class="s2">"%4i %D %?T? %-10T ?%t"</span>
+
+feedlist-title-format <span class="s2">""</span>
+
+articlelist-title-format <span class="s2">""</span>
+
+<span class="c"># reload-threads 4</span>
+
+<span class="c"># reload-time 90</span>
+
+<span class="c"># reload-only-visible-feeds yes</span>
+
+cache-file <span class="s2">"~/.config/newsboat/cache.db"</span>
+
+<span class="c"># notifications</span>
+
+notify-format <span class="s2">"Newsboat: %d new"</span>
+
+notify-program <span class="s2">"/usr/bin/notify-send"</span>
+
+<span class="c">#keybinds</span>
+
+bind-key j down
+
+bind-key k up
+
+bind-key l open
+
+bind-key h quit
+
+unbind-key g <span class="c"># bound to `sort` by default</span>
+
+bind-key g home
+
+bind-key s <span class="nb">sort
+
+</span>unbind-key G <span class="c"># bound to `rev-sort` by default</span>
+
+bind-key G end
+
+bind-key O open-all-unread-in-browser-and-mark-read
+
+unbind-key r
+
+bind-key r reload-all
+
+color background default default
+
+color listnormal default default
+
+color listnormal_unread green default
+
+color listfocus yellow default bold
+
+color listfocus_unread yellow default bold
+
+color info default default
+
+color article magenta default
+
+<span class="c"># highlights</span>
+
+highlight article <span class="s2">"^(Title):.</span><span class="se">\*</span><span class="s2">$"</span> red default
+
+highlight article <span class="s2">"https?://[^ ]+"</span> blue default
+
+highlight article <span class="s2">"</span><span class="se">\\</span><span class="s2">[image</span><span class="se">\\</span><span class="s2"> [0-9]+</span><span class="se">\\</span><span class="s2">]"</span> green default
+
+<span class="c"># Killfiles</span>
+
+<span class="c">#ignore-article "\*" "title =~ \"Väder\""</span>
+
+<span class="c">#ignore-article "\*" "title =~ \"Rugby\""</span>
+
+<span class="c">#ignore-article "\*" "title =~ \"Uutiset\""</span>
+
+<span class="c">#ignore-article "\*" "title =~ \"Kulturnyheterna\""</span>
+
+<span class="c">#ignore-article "\*" "title =~ \"från dagen\""</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Browser kısmına, firefox,chrome,chromium ne kullanıyorsanız onu yazabilirsiniz. Ama xdg open yakabileceği için zaten varsayılan tarayıcınızla açıcaktır : )</li>
+  <li>Macro kısımlar ise videoları youtube-dl ile yakalayıp mpv playerime göndermek için .</li>
+  <li>Ben kullanıma alıştığım için klavye kısa yollarını gösteren kısımları kapattım.</li>
+  <li>Yinede merak edenler <a href="https://newsboat.org/releases/2.19/docs/newsboat.html" target="\_blank" rel="noopener noreferrer">Döküman Sayfası</a> ndan gerekli bilgileri alabilirler.</li>
+</ul>
+
+<h1 id="kısayollar">Kısayollar</h1>
+
+<table class="container">
+	<thead>
+		<tr>
+			<th><h1 class="no_toc">Kısayol</h1></th>
+			<th><h1 class="no_toc">İşlevi</h1></th>
+		</tr>
+	</thead>
+	<tbody>
+    <tr>
+      <td>A</td>
+      <td>Tümünü Okundu yap</td>
+    </tr>
+    <tr>
+      <td>O</td>
+      <td>Web tarayıcıda aç</td>
+    </tr>
+    <tr>
+      <td>Yön tuşları</td>
+      <td>Sağa sola aşağı yukarı git</td>
+    </tr>
+     <tr>
+      <td>Q</td>
+      <td>Çıkış</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<p>Bu ayarları #keybinds kısmında tanımlamışım yukarıda görüldüğü üzere : )</p>
+
+<p>Yine bu tuşları değiştirebilirsiniz. Kısacası herşey sizin keyfinize kalmış.</p>
+
+<ul>
+  <li><strong>Color</strong> kısımları ise,bir rss okunmuş okunmamış,yeni,listede ki görünümü için kullandığım kısımlar.</li>
+  <li><strong>İgnore</strong> ise bazı makaleleri indexleyip göstermesini istemiyorum. Şu kelimeleri içeriyorsa gösterme diyorum. (Ayar kapalıdır) Ayarı açmak için başında ki # işareti kaldırmanız yeterlidir.</li>
+</ul>
+
+<p>Gelelim url kısmına :
+Feed adresleri, <strong>urls</strong> adlı dosyada saklanır. <strong>$HOME/.config/newsboat/urls</strong>
+İçerisine alt alta feed adreslerini yazarsınız, evet bu kadar : )
+Örnek :</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>
+<span class="c"># Blog</span>
+
+http://feeds.feedburner.com/kushellig
+https://sunaku.github.io/index.atom
+https://lukesmith.xyz/rss.xml
+https://feeds2.feedburner.com/9lesson
+https://tewarid.github.io/feed.xml
+https://sushankpokharel.com.np/feed/
+http://ciftklik.blogspot.com/feeds/posts/default
+http://www.emrebuyukkurkcu.com/feed/
+https://itsalljs.com/rss.xml
+http://www.kurumsaljava.com/feed/
+https://www.larashout.com/feed
+https://laraveldaily.com/feed/
+https://gokmengorgen.net/tr/index.xml
+http://oguzkaganeren.com.tr/index.php/feed/
+https://omercitak.com/feed/
+https://ogunal.com/feed/
+http://selcukcelik.org/feed/
+https://simpleit.rocks/index.xml
+https://twitteinfo.com/feed/
+http://feeds.feedburner.com/TammerSaleh
+
+<span class="c"># deactive</span>
+
+<span class="c"># https://www.datafloyd.com/tr/feed/</span>
+
+</code></pre></div></div>
+
+<p>Dilerseniz bu alta istediğiniz kadar urle yazabilirsiniz. Ancak youtube,haber kanalları,bloglar vs çok yoğun bir takip durumunuz var ise , yapılandırma dosyalarınızı ayırmanızı tavsiye ederim. Beni Takip etmek isterseniz <a href="https://yuceltoluyag.github.io/feed.xml">Yücel Toluyağ Feed</a> linkini kullanabilirsiniz. E-posta ile abone olmak isterseniz <a href="https://yuceltoluyag.github.io/about/">Hakkımda</a> sayfasının en altında ki bildirim sistemi kısmına, eposta adresinizi yazıp doğrulamanız yeterlidir.</p>
+
+<h1 id="örnek-youtube">Örnek Youtube</h1>
+
+<ul>
+  <li><a href="https://www.youtube.com/subscription_manager" target="\_blank" rel="noopener noreferrer">https://www.youtube.com/subscription_manager</a> linkine gidin. Sayfanın en altında “RSS okuyuculara dışa aktarım” yazısını göreceksiniz. Aboneliklerimi dışarı aktar diyip dosyayı indirin.</li>
+</ul>
+
+<p>Haberler için diyelimki $HOME/.config/newsboat/haberconfig diye bir dosya oluşturduğumuzu, youtube içinde $HOME/.config/newsboat/youtubeconfig diye bir dosya oluşturduğumuzu varsayalım.(Dosya yollarıyla birlikte yazıyorum ki kafanız karışmasın)
+Şimdi ben bunlara ulaşabilmek için, alias oluşturuyorum. Alias’larınızı .bashrc .zshrc içerisine kaydedebilirsiniz.</p>
+
+<p>Haber</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">alias </span><span class="nv">haberbotu</span><span class="o">=</span><span class="s2">"newsboat -u ~/.config/newsboat/haberurls -C ~/.config/newsboat/config"</span>
+</code></pre></div></div>
+
+<p>Youtube</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">alias </span><span class="nv">youtubebotu</span><span class="o">=</span><span class="s2">"newsboat -u ~/.config/newsboat/yturls -C ~/.config/newsboat/ytconfig"</span>
+
+</code></pre></div></div>
+
+<p>İndirdiğimiz <strong>subscription_manager</strong> isimli dosyayı içeri aktaralım.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>youtubebotu <span class="nt">-i</span> subscription_manager
+</code></pre></div></div>
+
+<p>~/.config/newsboat/yturls dosyasını açtığınızda,içerisinde tüm abone olduğunuz kanalların feed adreslerini görebileceksiniz.</p>
+
+<p>Terminalden <strong>haberbotu</strong>,<strong>youtubebotu</strong> nu çalıştırarak son güncellemeleri alabilirsiniz. Umarım faydalı olur.</p>
+
+<div class="details admonition tip open">
+  <div class="details-summary admonition-title"><svg class="maicon icon icon-diamonds">
+    <use xlink:href="#icon-diamonds"></use>
+  </svg>Güncelleme<svg class="details-icon icon icon-circle-right">
+    <use xlink:href="#icon-circle-right"></use>
+  </svg></div>
+  <div class="details-content">
+    <div class="admonition-content"><p><a href="https://github.com/yuceltoluyag/dotfiles/tree/master/dotfiles/config/newsboat" target="_blank" rel="noopener noreferrer">NewsBoat Ayarlarım!</a></p>
+</div>
+  </div>
+</div>
+
+:ET

@@ -1,0 +1,387 @@
+I"�1<p>Merhaba bu yazımızın ilk bölümünde,muhteşem bir e-posta istemcisi olan mutt ayarlarımızı yapılandıracağız.</p>
+
+<!-- excerpt separator -->
+
+<div class="box">
+  <p>Bu <strong>mutt</strong> serisinin 1. yazısıdır Toplamda 2 bölümden oluşmaktadır.</p>
+
+  <ul class="directory-list">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <i>Modern bir mutt kurulumu 1.bölüm</i>
+      
+    </li>
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/imap-openssl-terminalde-kullanim/">IMAP sunucusuna OpenSSL kullanarak terminal ile  erişin</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+<h2 id="gerekli-yazılımlar">Gerekli Yazılımlar</h2>
+
+<ol>
+  <li><a href="https://wiki.archlinux.org/index.php/Isync#Installing">Mbsync/isync</a></li>
+  <li><a href="https://wiki.archlinux.org/index.php/Msmtp">Msmtp</a></li>
+  <li><a href="https://aur.archlinux.org/packages/mu/">Mu</a></li>
+  <li>Vim yada türevleri</li>
+  <li><a href="https://www.archlinux.org/packages/community/x86_64/neomutt/">NeoMutt</a></li>
+  <li><a href="https://aur.archlinux.org/packages/vdirsyncer-git/">Vdirsyncer</a></li>
+  <li><a href="https://www.archlinux.org/packages/community/any/khard/">Khard</a></li>
+  <li><a href="https://aur.archlinux.org/packages/ripmime/">Ripmime</a></li>
+  <li><a href="https://www.archlinux.org/packages/community/any/urlscan/">UrlScan</a></li>
+  <li><a href="https://www.archlinux.org/packages/extra/x86_64/w3m/">W3m</a></li>
+  <li><a href="https://www.archlinux.org/packages/core/x86_64/gpgme/">Gpgme</a></li>
+</ol>
+
+<h2 id="yukarıda-programlar-ne-işe-yarar-">Yukarıda programlar ne işe yarar ?</h2>
+
+<ul>
+  <li><strong>mbsync</strong> : birden çok IMAP hesaplarını yerel makine (local) de senkronize eder.</li>
+  <li><strong>msmtp</strong> : e-posta göndermenizi sağlar 😁</li>
+  <li><strong>mu</strong> : e-postanızlarınızı indexler ve tüm e-postalarınız için bir arama arayüzü sağlar</li>
+  <li><strong>vim</strong> : Eposta yazmak için editör,türevlerinide kullanabilirsiniz. Ben neovim kullanıyorum.</li>
+  <li>ve son olarak: <strong>neomutt</strong> mail clientimiz. 😇</li>
+</ul>
+
+<p>Yukarıda ki programlar mail alıp gönderebilmemiz için gerekli uygulamalardır. Mail içerisinde eklere bakmak, kişileri görmek vb gibi işlevleri ise aşağıda ki uygulamalarla yapıyoruz.</p>
+
+<ul>
+  <li><strong>vdirsyncer</strong> : Kişilerinizi senkronize eder.</li>
+  <li><strong>khard</strong> : vdirsyncer’den senkronize edilmiş kişileri neomutt içerisinde kullanılabilir hale getirir.</li>
+  <li><strong>ripmime</strong> : E-posta eklerini kaydetmeye yarar</li>
+  <li><strong>urlscan</strong> : Tercih ettiğiniz tarayıcıda url(adresleri) açar</li>
+  <li><strong>w3m</strong> : HTML e-postalarını mutt içinde okunabilir hale getirmek için kullanılır</li>
+  <li><strong>gpgme</strong> : E-postaları şifrelemek için kullanılır.</li>
+</ul>
+
+<h2 id="kurulum">Kurulum</h2>
+
+<p>Yukarıda ki paketleri kendi dağıtımına göre kurun. Arch Linux Kullananlar için kolaylık sağlayalım 🤣</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>yay <span class="nt">-S</span> msmtp msmtp-mta isync mu-git neovim neomutt-git vdirsyncer-git khard ripmime urlscan w3m gpgme
+
+</code></pre></div></div>
+
+<p>Klasör yapımızı oluşturalım. Ben anadizinde klasör kalabağılını sevmediğim için gizli dosya olarak oluşturuyorum. Burası keyfinize kalmış 😀 Dikkat etmeniz gereken klasör isimlerine <strong>Türkçe</strong> karekterler koymamaya çalışın.(ç, ı, ü, ğ, ö, ş, İ, Ğ, Ü, Ö, Ş, Ç)</p>
+
+<ul>
+  <li>Bu süreçte bizi en çok uğraştıracak olan gmail dir. Aldığı güvenlik önlemleri çeşitli ayarlar yaparak geçmeye çalışacağız. Gmail konusunda sorun yaşarsanız yorumlayın çözmeye çalışalım.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">mkdir</span> .Contacts
+<span class="nb">mkdir</span> .Mail
+<span class="nb">mkdir</span> .Mail/ytoluyagmail
+<span class="nb">mkdir</span> .Mail/ytoluyagyandex
+<span class="nb">mkdir</span> .Mail/yuceltoluyaghotmail
+</code></pre></div></div>
+
+<p>Ana dizinimize bir dosya daha oluşturuyoruz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">touch</span> ~/.mbsyncrc
+
+</code></pre></div></div>
+
+<ul>
+  <li>Bu dosyada e-posta hesaplarımızı IMAP üzerinden senkronize edilecek şekilde yapılandıracağız. Örnek olarak :</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="c">#################################</span>
+<span class="c">######## Gmail Hesabım ########</span>
+<span class="c">#################################</span>
+
+IMAPAccount gmail
+Host imap.gmail.com
+User ytoluyag@gmail.com
+<span class="c">#PassCmd "security find-internet-password -s 'imap.gmail.com' -a 'ytoluyag@gmail.com' -w"</span>
+PassCmd <span class="s2">"/usr/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.password-store/ytoluyag.gpg"</span>
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+SSLVersions SSLv3
+AuthMechs LOGIN
+
+<span class="c"># Remote storage</span>
+
+IMAPStore ytoluyag-remote
+Account gmail
+
+<span class="c"># Local storage</span>
+
+MaildirStore ytoluyag-local
+Path ~/.Mail/ytoluyagmail/
+Inbox ~/.Mail/ytoluyagmail/INBOX
+
+Channel ytoluyag-inbox
+Master :ytoluyag-remote:<span class="s2">"[Gmail]/All Mail"</span>
+Slave :ytoluyag-local:INBOX
+Create Both
+Expunge Both
+
+Channel ytoluyag-archive
+Master :ytoluyag-remote:<span class="s2">"[Gmail]/Starred"</span>
+Slave :ytoluyag-local:archive
+Create Both
+Expunge Both
+
+Channel ytoluyag-drafts
+Master :ytoluyag-remote:<span class="s2">"[Gmail]/Drafts"</span>
+Slave :ytoluyag-local:drafts
+Create Both
+Expunge Both
+
+Channel ytoluyag-sent
+Master :ytoluyag-remote:<span class="s2">"[Gmail]/Sent Mail"</span>
+Slave :ytoluyag-local:sent
+Create Both
+Expunge Both
+
+Channel ytoluyag-trash
+Master :ytoluyag-remote:<span class="s2">"[Gmail]/Trash"</span>
+Slave :ytoluyag-local:trash
+Create Both
+Expunge Both
+
+Channel ytoluyag-junk
+Master :ytoluyag-remote:<span class="s2">"[Gmail]/Spam"</span>
+Slave :ytoluyag-local:junk
+Create Both
+Expunge Both
+
+Group ytoluyag
+Channel ytoluyag-inbox
+Channel ytoluyag-archive
+Channel ytoluyag-drafts
+Channel ytoluyag-sent
+Channel ytoluyag-trash
+Channel ytoluyag-junk
+
+<span class="c">#################################</span>
+<span class="c">######## Hotmail Hesabım ############</span>
+<span class="c">#################################</span>
+
+IMAPAccount yuceltoluyag
+Host outlook.office365.com
+User yuceltoluyag@hotmail.com.tr
+Pass <span class="s2">""</span>
+SSLType IMAPS
+SSLVersions TLSv1.2
+AuthMechs PLAIN
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+<span class="c"># Remote storage</span>
+
+IMAPStore yuceltoluyag-remote
+Account yuceltoluyag
+
+<span class="c"># Local storage</span>
+
+MaildirStore yuceltoluyag-local
+Path ~/.Mail/yuceltoluyaghotmail/
+Inbox ~/.Mail/yuceltoluyaghotmail/INBOX
+
+Channel yuceltoluyag-inbox
+Master :yuceltoluyag-remote:<span class="s2">"+INBOX"</span>
+Slave :yuceltoluyag-local:INBOX
+Create Both
+Expunge Both
+
+Channel yuceltoluyag-drafts
+Master :yuceltoluyag-remote:<span class="s2">"Drafts"</span>
+Slave :yuceltoluyag-local:drafts
+Create Both
+Expunge Both
+
+Channel yuceltoluyag-sent
+Master :yuceltoluyag-remote:<span class="s2">"Sent"</span>
+Slave :yuceltoluyag-local:sent
+Create Both
+Expunge Both
+
+Channel yuceltoluyag-trash
+Master :yuceltoluyag-remote:<span class="s2">"deleted"</span>
+Slave :yuceltoluyag-local:trash
+Create Both
+Expunge Both
+
+Channel yuceltoluyag-junk
+Master :yuceltoluyag-remote:<span class="s2">"Junk"</span>
+Slave :yuceltoluyag-local:junk
+Create Both
+Expunge Both
+
+Group yuceltoluyag
+Channel yuceltoluyag-inbox
+Channel yuceltoluyag-drafts
+Channel yuceltoluyag-sent
+Channel yuceltoluyag-trash
+Channel yuceltoluyag-junk
+</code></pre></div></div>
+
+<p>Burada ilgili mailleri oluşturduğunuz klasörlere yönlendirdik. Remote ve local olayı ise ; Mail içerisinde ki kategorilerin uzantıları, örneğin gmail içerisinde spam kategorisine tıkladığınızda <strong>trash</strong> linkine yönlendirir. Remote kısmına farklı birşey yazarsanız spam mailleri <strong>çekmeyecektir</strong>. Bu yüzden <strong>remote</strong> kısmı <strong>önemlidir</strong>.</p>
+
+<p>PassCmd kısmı ise şifreleri yazdığımız alandır.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="c">#PassCmd "security find-internet-password -s 'imap.gmail.com' -a 'ytoluyag@gmail.com' -w"</span>
+PassCmd <span class="s2">"/usr/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.password-store/ytoluyag.gpg"</span>
+
+</code></pre></div></div>
+
+<p>’#’ ile yorum satırı içerisine aldığım kısmıda kullanabilirsiniz. Güvenli olması açısından gpg ile şifreleyip açıyorum. (Seçim sizin)</p>
+
+<p>Ana dizine bir dosya daha oluşturuyoruz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">touch</span> ~/.msmtprc
+</code></pre></div></div>
+
+<p>Bu dosya içerisinde ise mail bağlantı ayarlarını yapıyoruz. Kullandığınız mail bağlantısınız imap,port,ssl vb gibi adreslemelerinin ne olduğunu bilmiyorsanız :</p>
+
+<ul>
+  <li><a href="https://support.google.com/mail/answer/7126229?hl=tr">Gmail İMAP</a></li>
+  <li><a href="https://yandex.com.tr/support/mail/mail-clients.html">Yandex İMAP</a></li>
+  <li><a href="https://support.office.com/tr-tr/article/outlook-com-i%C3%A7in-pop-imap-ve-smtp-ayarlar%C4%B1-d088b986-291d-42b8-9564-9c414e2aa040">Hotmail İMAP</a></li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>account ytoluyagmail
+host smtp.gmail.com
+port 465
+protocol smtp
+auth on
+user ytoluyag@gmail.com
+from ytoluyag@gmail.com
+tls on
+tls_starttls off
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+account yuceltoluyaghotmail
+host smtp.office365.com
+port 587
+protocol smtp
+auth on
+user yuceltoluyag@hotmail.com.tr
+from yuceltoluyag@hotmail.com.tr
+tls on
+tls_starttls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+</code></pre></div></div>
+
+<p>Bu ayarları test edelim.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">echo</span> <span class="s2">"Mail Test Ediyoruz"</span> | msmtp <span class="nt">-a</span> ytoluyagmail ytoluyag@gmail.com
+</code></pre></div></div>
+
+<p>ytoluyagmail : yukarıda oluşturduğumuz dizin ismi ve account ismimiz. Eğer ki bir hata oluşursa çözümde sunuyor :) En çok karşılaşılan problem, google’nin iki faktörlü uygulamasını kullanmayanlarda ve kullananlarda ortaya çıkıyor 😕</p>
+
+<h2 id="nasıl-yani-">Nasıl yani ?</h2>
+
+<p>Şöyle ki üçüncü parti uygulamalara izin verseniz dahi , güvenlik zaafiyeti oluşturacağından dolayı google amca bu olaya sıcak bakmıyor. Önce iki faktörlü doğrulamayı aç daha sonra uygulama şifresi kullan diyor. Bu kombinasyonda uygulamalarını kullanman daha sağlıklı olur diyor 😃 Bunlardan birisini yapmadığında sürekli telefona yada mailinize “zaafiyet bulundu zaafiyet bulundu” gibi bildirimler yapmakta 🤣 <a href="https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor&amp;visit_id=637163232570699931-2394244056&amp;rd=1">Google ile uygulama şifresi oluşturma</a> adımlarını takip edin. Artık şifre kısmına oluşturduğunuz <strong>uygulama şifresini yazacaksınız.</strong></p>
+
+<p><img src="/assets/images/uygulama_sifresi_gmail.webp" alt="Test Sonucu" /></p>
+
+<p>Bu işlemden sonra yapmamız gereken</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>mbsync <span class="nt">-a</span>
+
+</code></pre></div></div>
+
+<p>tüm epostalarımızı senkronize etmek. Bu işlem eposta sayınıza göre biraz zaman alabilir.</p>
+
+<p><img src="/assets/images/neomutt_senkron.webp" alt="neomutt_senkron" /></p>
+
+<p><a href="https://yuceltoluyag.github.io/imap-openssl-terminalde-kullanim/">2.Bölüm</a></p>
+:ET

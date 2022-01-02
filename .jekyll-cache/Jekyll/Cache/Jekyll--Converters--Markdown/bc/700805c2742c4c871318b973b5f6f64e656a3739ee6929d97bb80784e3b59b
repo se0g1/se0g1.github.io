@@ -1,0 +1,92 @@
+I"W<p><img src="/assets/images/ntfs_yetki_hatasi.webp" alt="Laravel İde Helper" /></p>
+
+<h1 id="sorun-nedir-">Sorun nedir ?</h1>
+
+<p>Linux’un dosya formatı ext(ext1,ext2,ext3,ext4) olduğundan, yeni kurulan sistemlerde farklı bir birimde ki disk türüne bağlandığımızda <strong>failed to mount diskadiniz -&gt; not authorized to perform operation</strong> gibi bir hatası ile karşılaşıyoruz. Daha modern bir dosya yöneticisi kullanıyorsanız, diske bağlanmak istediğinizde sizden <strong>parola</strong> isteyebilir. Aslında diğer birimleri linux tanıyor ancak işlem yapabilmek için,yetki istiyor. (Bağlanma,kopyalama,yapıştırma,silme,geri getirme vs gibi)</p>
+
+<!-- excerpt separator -->
+
+<h2 id="çözüm--1-yöntem-">Çözüm : 1. Yöntem ?</h2>
+
+<p>Terminali açıp şu uygulamaları kuruyoruz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> gvfs ntfs-3g dosfstools
+
+</code></pre></div></div>
+
+<p>Daha sonra</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>su
+<span class="nb">cd</span> /usr/share/polkit-1/rules.d
+<span class="nb">touch </span>10-drives.rules
+vim 10-drives.rules <span class="c"># siz düzenlemek istediğiniz başka bir editörle açabilirsiniz nano,sublime vs</span>
+</code></pre></div></div>
+
+<p>bu dosyanın içerisine şunları yapıştırıyorsunuz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>
+polkit.addRule<span class="o">(</span><span class="k">function</span><span class="o">(</span>action, subject<span class="o">)</span> <span class="o">{</span>
+<span class="k">if</span> <span class="o">(</span>action.id.indexOf<span class="o">(</span><span class="s2">"org.freedesktop.udisks2."</span><span class="o">)</span> <span class="o">==</span> 0<span class="o">){</span>
+<span class="k">return </span>polkit.Result.YES<span class="p">;</span>
+<span class="o">}</span>
+<span class="o">}</span>
+<span class="o">)</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<p>yapılan ayarların yeniden okutulması için (bazen bugda kalıyor yapmadabilirsiniz,eğer sorun yaşarsanız yaparsınız)</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> gvfs ntfs-3g dosfstools
+</code></pre></div></div>
+
+<p>Şimdi kullanıcımızı disk grubuna ekleyelim.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>gpasswd <span class="nt">-a</span> <span class="nv">$USER</span> disk
+
+</code></pre></div></div>
+
+<p>Bilgisayarınızı yeniden başlatın,sorun çözülmüş olacaktır.</p>
+
+<h2 id="ekstra-bilgiler-2yöntem">Ekstra Bilgiler 2.Yöntem</h2>
+
+<p>Takılı HDD/SDD/NVM lerin listelerini ve id(uuid)lerini görmek isterseniz şu komutu kullanabilirsiniz</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>blkid
+</code></pre></div></div>
+
+<p>İstediğiniz bir klasöre,bağlamak istediğiniz depolayıcıyı(hardiskinizde ki verileri) aktarabilirsiniz.</p>
+
+<p>Örneğin :</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo mkdir</span> /burayabagla
+
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>mount <span class="nt">-t</span> ntfs-3g /dev/sdXX /burayabagla
+</code></pre></div></div>
+
+<p><strong>sdXX</strong> kısmına yukarıda verdiğim <strong>blkid</strong> komutuyla aldığınız disk adını yazacaksınız.(sda1 sda2 sdb vs vs) Artık bağlamak istediğim hardiskimde ki verileri ana dizine oluşturmuş olduğum <strong>burayabagla</strong> klasöründe görebileceğim.</p>
+
+<p>Diski geri çıkarmak istersem</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>umount /burayabagla
+
+</code></pre></div></div>
+
+<p>Başlangıçta otomatik olarak,takılı şekilde gelmesini istersem</p>
+
+<p>fstab dosyasını düzenlememiz gerekiyor</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>vim /etc/fstab <span class="c"># siz düzenlemek istediğiniz başka bir editörle açabilirsiniz nano,sublime vs</span>
+</code></pre></div></div>
+
+<p>bu dosyanın en altına</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>/dev/sdXX /mirror ntfs-3g <span class="nv">uid</span><span class="o">=</span>kullaniciadiniz,gid<span class="o">=</span><span class="nb">users</span>,umask<span class="o">=</span>0022 0 0
+
+</code></pre></div></div>
+
+<p>ekleyiniz. Daha sonra sistemi yeniden başlattıığınızda,diskin takılı olarak geldiğini görebilirsiniz. Bu işlemler ekstrem durumlarda yapılabilir. Birinci yöntemi uyguladıktan sonra ,taktığınız her hdd otomatik olarak algılanacaktır. Eğer algınlanmazsa 2 yöntem ile bu sorunuda aşabilirsiniz.</p>
+
+<p><a href="https://wiki.archlinux.org/index.php/NTFS-3G" target="\_blank" rel="noopener noreferrer">Daha Fazla Bilgi için</a> Arch linux belgelerinden yararlanabilirsiniz.</p>
+:ET

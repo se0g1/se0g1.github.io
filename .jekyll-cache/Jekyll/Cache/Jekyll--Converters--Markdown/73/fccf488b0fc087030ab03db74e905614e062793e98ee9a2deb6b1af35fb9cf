@@ -1,0 +1,150 @@
+I"�<p>Merhabalar, uzun zaman oldu… Sırasıyla şu yazıları yazacağım diye not alıyorum ancak bir türlü yerine getiremiyorum 😊 Bu yazıda <strong>Windows</strong>,<strong>Linux</strong> ve <strong>Android</strong> de sıkça kullandığım uygulamalardan bahsedeceğim.</p>
+
+<!-- excerpt separator -->
+
+<div class="box">
+  <p>Bu <strong>tavsiyelerim</strong> serisinin 2. yazısıdır Toplamda 2 bölümden oluşmaktadır.</p>
+
+  <ul class="directory-list">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/her-turk-gencinin-izlemesi-gereken/">Her Türk Gencinin İzlemesi Gereken Belgeseller Serisi 1</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <i>Tavsiye Ettiğim programlar ve uygulamalar serisi</i>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+<blockquote>
+  <p>Bu yazıyı seri haline getirmek istiyorum (Bakalım olacak mı)</p>
+</blockquote>
+
+<h2 id="comodo-firewall-güvenlik-duvarı">Comodo Firewall** (Güvenlik Duvarı)</h2>
+
+<p><img src="/assets/images/comodo_firewall.webp" alt="Ekren Görüntüm" /></p>
+
+<p><strong>Ücretsiz</strong> versiyonunu kullanıyorum. İçerisinde container,antivirüs,tarayıcı vb gibi bir çok özelliği barındırmaktadır. Güvenmediğiniz dosyaları container(yani sanal makine içerisinde çalıştırabilirsiniz.) Bu özellik sanıyorum geçen ay windows 10 da kullanılan <strong>Windows defender</strong> e de geldi. Ayrıca ağınızda ki akışı takip edebilir,hangi uygulama nereye veri gönderiyor inceleyebilirsiniz.</p>
+
+<h2 id="key-scrambler">Key Scrambler</h2>
+
+<p>Klavye üzerinde bastığınız tuşları anlık olarak şifreleyebiliyor. Bu sayede olurda bilgisayarınıza zararlı bir yazılım bulaşmışşa(keylogger ve türevleri) bir tık önüne geçmiş oluyorsunuz : ) <a href="https://www.qfxsoftware.com/download.htm">https://www.qfxsoftware.com/download.htm</a> adresinden indirebilirsiniz. Programı kurduktan sonra sistemi yeniden başlatın ve şifreleme ekranını ister gösterin yada istediğiniz köşede gösterin. Klavyede herhangi bir tuşa bastığınızda otomatik olarak şifreleme işlemi başlar.</p>
+
+<p><img src="/assets/images/keyscrambler.webp" alt="program aktif" />
+<img src="/assets/images/keyscrambler2.webp" alt="şifreleme ekranım" /></p>
+
+<h2 id="0patch"><strong>0patch</strong></h2>
+
+<p>Bu uygulamayı windows 7 de kullanıyordum. Kritik bir açık ortaya çıkarsa(yazılımsal veya sistemsel) sisteme mini yama atıyor .. Bu sayede açık tamamen kapatılana kadar minik bir önlem almış oluyorsunuz. Windows 10 da kullanıyorum. Özellikle windozort kullanan kurumsal firmalarda sıkça görürsünüz. Ne olur ne olmaz ben kimim ki demeyin kurun :)</p>
+
+<h2 id="ublock-origin"><strong>Ublock Origin</strong></h2>
+
+<p>Adblock ‘un verileri pandiklemesinden ötürü açık kaynak reklam engelleyici arayanlar için tavsiye ettiğim uygulamalardan bir tanesidir. Son zamanlarda <a href="https://pi-hole.net/">https://pi-hole.net/</a> kullandığımda doğrudur 😁</p>
+
+<h2 id="mobilde-reklamsız-youtube-deneyimi--vancedapp"><strong>Mobilde reklamsız youtube deneyimi : Vanced.App</strong></h2>
+
+<p>Youtube ‘nin resmi uygulamasından sıkıldınız mı, can sıkıcı reklamlar yüzünden videoyu ağız tadıyla izleyemiyor musunuz ? Şöyle youtubeden bir video açsam arka planda oynasa ne güzel olur muydu ? Cevabınız evetse aradığınız uygulama youtube vanced : ) Yaklaşık Bir yıldır kullanıyorum. Youtube Vanced <strong>abone olduğunuz kanalları takip etmek istiyorsanız</strong> uygulamayı kurmadan önce sitede adı geçen <strong>micro-g</strong> uygulamasını önce <strong>kurun</strong>,sonra youtube vanced i kurun. Aksi takdir hata alırsınız.</p>
+
+<h2 id="wp-aero"><strong>WP Aero</strong></h2>
+
+<p>Whatshapp uygulamasının gelişmiş hali diyebilirim. Görüldü olmadan mesajları okumak hikayelere bakmak,sizi kimlerin arayabileceğini seçmek,temalar,duruma daha uzun videolar atabilmek(wp aero kullananlarda görünür,standart kullanıcılarda ise 30 saniye olarak görünür, ona dikkat edin ) Yine aynı grubun <strong>Insta Aero</strong> adlı uygulaması var onuda kullanan arkadaşlarım memnun. Whatsapp üzerinden rahatsız edilmek istemediğim durumlarda işimi çok kolaylaştırıyor : )</p>
+
+<p>Part 2 de görüşmek dileğiyle, sen pai ❤️</p>
+:ET

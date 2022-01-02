@@ -1,0 +1,292 @@
+I"E(
+<div class="box">
+  <p>Bu <strong>archlampp</strong> serisinin 3. yazısıdır Toplamda 4 bölümden oluşmaktadır.</p>
+
+  <ul class="directory-list">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/arch-linux-lampp-kurulumuphp7xmariadbmy/">Arch Linux Lampp Kurulumu(PHP7x+MariaDB+Mysql+Phpmyadmin)</a>
+      
+    </li>
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/arch-linux-apachelampp-sanal-sunucu/">Arch Linux Apache(lampp) Sanal Sunucu Kurulumu</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <i>Archlinux üzerinde Virtualbox + Vagrant + Laravel + Phpmyadmin Kurulumu(Homestead)</i>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/archlinux-valet-kurulumu/">Arch Linux Laravel Valet Kurulumu</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+<h2 id="virtualbox-kurulumu">Virtualbox Kurulumu</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> virtualbox
+
+</code></pre></div></div>
+
+<p>yükle ekranında karşımıza</p>
+
+<ol>
+  <li>virtualbox-host-dkms</li>
+  <li>virtualbox-host-modules-arch
+<!-- excerpt separator -->
+seçenekleri gelecektir. Hangisini seçeceğinizi bilmiyorsanız</li>
+</ol>
+
+<ul>
+  <li>Eğer <strong>linux kerneli</strong> kullanıyorsanız 2 numarayı yani virtualbox-host-modules-arch seçmelisiniz</li>
+  <li><strong>farklı bir kernel</strong> kullanıyorsanız 1 numarayı yani virtualbox-host-dkms seçmelisiniz.</li>
+</ul>
+
+<p>2 yi seçip işleme devam ediyorum. Kurulum bittikten sonra</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>modprobe vboxdrv
+</code></pre></div></div>
+
+<p>bu işlemden sonra virtualboxu bir kez çalıştırın <strong>hata</strong> var mı yok mu <strong>kontrol</strong> edin. Hata var ise , aldıgınız hata ile birlikte yorum bırakın yardımcı olmaya çalışırım.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>nano /etc/modules-load.d/virtualbox.conf
+
+</code></pre></div></div>
+
+<p>dosyamızı açıp içerisine <strong>vboxdrv</strong> yazın ardından F3 enter F2 diyerek çıkış yapın. Bu işlemden sonra</p>
+
+<p>Şimdi <strong>Arch Linux</strong> ‘ a giriş yaptığınız kullanıcıyı ‘<strong>vboxusers</strong>’ sistem grubuna eklemelisiniz. Bunu yaparak normal bir kullanıcının VirtualBox’ı ve tüm özelliklerini kullanmasını sağlayabilirsiniz. Aksi takdirde, VirtualBox’u çalıştırdığınızda birçok kısıtlama göreceksiniz.
+Giriş kullanıcınızı ‘vboxusers’ grubuna eklemek için aşağıdaki komutu çalıştırın:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>usermod <span class="nt">-aG</span> vboxusers KULLANICI_ADINIZ
+</code></pre></div></div>
+
+<p>Şimdi bilgisayarınızı yeniden başlatın. Bilgisayarınız başlatıldığında, vboxdrv çekirdek modülünün sistem önyüklemesine otomatik olarak yüklenip yüklenmediğini kontrol etmek için aşağıdaki komutu çalıştırın:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>lsmod | <span class="nb">grep </span>vboxdrv
+
+</code></pre></div></div>
+
+<h2 id="vagrant-kurulumu">Vagrant kurulumu</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>yay <span class="nt">-S</span> vagrant
+</code></pre></div></div>
+
+<p>dilerseniz vagrant plugin &amp; plugin managerlerinide yükleyebilirsiniz</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>vagrant plugin <span class="nb">install </span>vagrant-vbguest vagrant-share
+
+</code></pre></div></div>
+
+<p>daha sonra vagrant tarafından bize sağlanan hazır imajı indiriyoruz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>vagrant box add laravel/homestead
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="o">==&gt;</span> box: Successfully added box <span class="s1">'laravel/homestead'</span> <span class="o">(</span>güncel sürüm no<span class="o">)</span> <span class="k">for</span> <span class="s1">'virtualbox'</span><span class="o">!</span>
+
+</code></pre></div></div>
+
+<p>Mesajını gördükten sonra virtualboxa sanal bir makina imajı oluşturuldu.</p>
+
+<p>HomeStead ‘ı yükleyelim</p>
+
+<p>Bunun için ev dizinimde www diye klasör oluşturuyorum. Bu oluşturulan klasöre gidip homestead dosyalarını çekiyorum.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">mkdir </span>www
+<span class="nb">cd </span>www
+git clone https://github.com/laravel/homestead.git Homestead
+</code></pre></div></div>
+
+<p>sırasıyla bu komutları uygularsanız home klasörünüzün altında <strong>www</strong> altında <strong>homestead</strong> adında bir klasör oluşacaktır. [<strong>home/kullaniciadiniz/www/homestead</strong>]</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">cd</span> ~/www/homestead
+bash init.sh
+
+</code></pre></div></div>
+
+<p><strong>Homestead initialized!</strong> yazısını göreceksiniz : )
+Bu adımdan sonra Homestead.yaml dosyamızı düzenleyeceğiz. /home/kadi/www/Homestead/Homestead.yaml</p>
+
+<script src="https://gist.github.com/yuceltoluyag/5e0dac9ef4c2da7c27cd278cac7140e4.js"></script>
+
+<p>bu dosyayı açtığınızda <strong>Code</strong> yazan kısımları <strong>www</strong> ile değiştirdim. Çünkü biz www isminde klasör oluşturduk. Aşağıda ki to yazan kısım ise virtualboxta ki sanal sunucumuzla bağlantı kuracağı adrestir. Dosyanın başında gördüğünüz üzere ip: “192.168.10.10” <strong>adresini yönlendirme ip’si olarak kullanacağız.</strong> Oluşturduğum <strong>laravel6.test</strong> domainine ulaşabilmek için host dosyamızı düzenlemeliyiz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>nano /etc/hosts
+</code></pre></div></div>
+
+<p>içerisine ekleyin.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>192.168.10.10 laravel6.test
+
+</code></pre></div></div>
+
+<p>F3 ardından enter ve F2 ile çıkın</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">cd</span> /home/kullaniciadin/www/Homestead
+vagrant up
+</code></pre></div></div>
+
+<p>komutunu verin, ilk açılışta biraz uzun sürebilir. Hata alırsanız yorum bırakmayı unutmayınız : )</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>vagrant ssh
+
+</code></pre></div></div>
+
+<p><img src="/assets/images/pic-selected-190916-0747-49.webp" alt="vagrant_ssh" /></p>
+
+<p>resimde görüldüğü üzere makinemize ssh ile bağlandık. Daha sonra</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">cd </span>www
+composer create-project <span class="nt">--prefer-dist</span> laravel/laravel
+</code></pre></div></div>
+
+<p>laraveli makinemize kuruyoruz. bu işlemden sonra otomatik olarak www klasörünüzün içerisine laravel isminde klasör oluşacaktır.</p>
+
+<p><img src="/assets/images/pic-full-190916-0808-36.webp" alt="vagrant_laravel_windows10_installed" /></p>
+
+<h2 id="phpmyadmin-kurulumu">phpmyadmin kurulumu</h2>
+
+<p>SSH’ta bağlı veya değilseniz bile www klasöründe olmalısınız. Aksi taktirde yaptığınız tüm işlemler o anki bulunduğunuz dizinde gerçekleşir. 😲</p>
+
+<p><img src="/assets/images/pic-selected-190916-0818-54.webp" alt="vagrant_phpmyadmin_installed" /></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>curl <span class="nt">-sS</span> https://raw.githubusercontent.com/grrnikos/pma/master/pma.sh | sh
+
+</code></pre></div></div>
+
+<p>şimdi bu dizine ulaşabilmek için yukarıda yaptığımız gibi host dosyası aracılığıyla yönlendirme yapalım.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>nano /etc/hosts
+</code></pre></div></div>
+
+<p>içerisine ekleyin.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>192.168.10.10 laravel6.test <span class="c">#bunu daha önce eklemiştik altına ekliyoruz.</span>
+192.168.10.10 phpmyadmin.test
+
+</code></pre></div></div>
+
+<p>F3 ardından enter ve F2 ile çıkın</p>
+
+<p>homestead.yaml dosyamızı düzenleyelim. Heryeri proje eklediğinizde sadece sites yazan kısmın altına ekleyeceksiniz. Bu bir uygulama(phpmyadmin,eklenti,yeni bir proje vs vs vs)</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>sites:
+<span class="nt">--</span> map: laravel6.test
+to: /home/vagrant/www/laravel6/public
+<span class="nt">--</span> map: phpmyadmin.test
+to: /home/vagrant/www/phpmyadmin
+</code></pre></div></div>
+
+<p><a href="http://phpmyadmin.test/">http://phpmyadmin.test/</a> girdiğinizde kullanıcı adı <strong>homestead</strong> şifre <strong>secret</strong></p>
+
+<!-- Feel free to change the width and height to your desired video size. -->
+
+<div class="embed-container">
+  <iframe class="lazyload" data-src="https://www.youtube.com/embed/d9ITbD5Mn3w" width="700" height="480" frameborder="0" allowfullscreen="" title="Archlinux üzerinde Virtualbox">
+  </iframe>
+</div>
+
+:ET

@@ -1,0 +1,60 @@
+I"<p>Merhaba, linux’ta en çok vakit geçirdiğimiz terminalimizi nasıl özelleştirebiliriz ? Aradığınız cevap tamda burada 💪 En çok vakit geçirdiğimiz elin adamının dediği gibi home home sweet home niteliğinde ki terminalimizi nasıl şekillendirebiliriz, konusuna değindim.</p>
+
+<!-- excerpt separator -->
+
+<h1 id="neden">Neden</h1>
+
+<p>Ubuntu’nun varsayılan olarak gelen terminali standart kullanımlarda iş görüyor ancak birden fazla terminalle çalışmanız gerektiğinde işler iyice karışıyor 😓 Linux ta her zaman ki gibi envaii çeşit alternatif var ancak ben <strong>terminator</strong> ve <strong>fish</strong> birleşimden ortaya çıkan karışımı lezzettli buluyorum.😉</p>
+
+<ul>
+  <li>Aynı ekran içerisinde bölünebilmesi(x-y ekseninde bile)</li>
+  <li>Kod renklendirme, kod tamamlama,önceki kullanılan kodları gösterme</li>
+  <li>Eklentiler ve temalar gibi bir çok özelliğinin bulunması terminatör kullanmak için binlerce sebeplerden birisi..</li>
+</ul>
+
+<h1 id="kurulum">Kurulum</h1>
+
+<ul>
+  <li><a href="https://yuceltoluyag.github.io/oh-my-zsh-kurulumu-tema-ve-eklentiler/" target="\_blank" rel="noopener noreferrer">Oh My ZSH Kurulumu</a> (diğer tavsiyem)</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>terminator <span class="c">#terminatoru yüklüyoruzt</span>
+
+</code></pre></div></div>
+
+<h1 id="tema">Tema</h1>
+
+<ul>
+  <li><a href="http://iterm2colorschemes.com/" target="\_blank" rel="noopener noreferrer">iterm2colorschemes.com</a> sitesinden beğendiğimiz bir temanın ismini kopyalıyoruz. Github sayfasından terminator klasörüne girip beğendiğimiz temanın adını aratıyoruz.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>gedit ~/.config/terminator/config <span class="c">#kodlarımızı profile kısmının altına yapıştırıyoruz</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>bash <span class="c">#enter</span>
+
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>fish <span class="c">#fish kurulumu fish #yazarak fishe giriş yapıyoruz simgenin değiştiğini görebilirsiniz.</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>chsh <span class="nt">-s</span> /usr/bin/fish <span class="c">#varsayılan terminalimizi değiştiriyoruz</span>
+
+</code></pre></div></div>
+
+<h1 id="fazladan-bilgi">Fazladan Bilgi</h1>
+
+<ul>
+  <li><a href="https://github.com/oh-my-fish/oh-my-fish" target="\_blank" rel="noopener noreferrer">oh-my-fish</a> adresinden curl bağlantısı ile fishi kuruyoruz.</li>
+  <li><a href="https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md" target="\_blank" rel="noopener noreferrer">oh my fish temaları</a> adresinden beğendiğiniz temayı omf install temaadı yazarak yükleyebilirsiniz.</li>
+  <li><a href="https://github.com/oh-my-fish" target="\_blank" rel="noopener noreferrer">oh my fish eklentileri</a> sayfasından eklentileri arayarak keşfedebilirsiniz. Tıpkı tema yüklemede olduğu gibi omf install eklentiadı yazarak indirebilirsiniz.</li>
+</ul>
+
+<!-- Feel free to change the width and height to your desired video size. -->
+
+<div class="embed-container">
+  <iframe class="lazyload" data-src="https://www.youtube.com/embed/h78f3V4p09E" width="700" height="480" frameborder="0" allowfullscreen="" title="terminator+git+curl+fish yükleme işlemi(terminali özelleştirme)">
+  </iframe>
+</div>
+
+:ET

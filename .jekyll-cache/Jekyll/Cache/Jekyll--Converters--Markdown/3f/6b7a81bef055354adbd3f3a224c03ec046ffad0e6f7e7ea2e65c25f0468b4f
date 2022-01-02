@@ -1,0 +1,36 @@
+I"�<p>Linux Tarafında Kullanmak isteyenleri böyle alalım. =&gt; <a href="https://yuceltoluyag.github.io/arch-linux-apachelampp-sanal-sunucu/">Dıkla</a></p>
+
+<p>Aşağıdaki dosya dizinine gidin not defteri veya herhangi bir editörle açın</p>
+
+<!-- excerpt separator -->
+
+<ol>
+  <li>C:\Windows\System32\Drivers\etc\hosts</li>
+  <li>
+    <p>Açılan dosyanın en altına 127.0.0.1 siteadresi.uzantı şeklinde ekleme yapın Örneğin</p>
+
+    <div class="language-conf highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="m">127</span>.<span class="m">0</span>.<span class="m">0</span>.<span class="m">1</span> <span class="n">eticaret</span>.<span class="n">test</span>
+
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p><img src="/assets/images/hosts.webp" alt="Host Dosyası Edit" /></p>
+
+<ol>
+  <li>
+    <p>XAMPP dizini gidin editorunuzle açın
+C:\xampp\apache\conf\extra\httpd-vhosts.conf</p>
+
+    <div class="language-apache highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nc">ServerAdmin</span> webmaster@dummy-host.example.com
+<span class="nc">DocumentRoot</span> "C:/xampp/htdocs/eticaret/"
+<span class="nc">ServerName</span> eticaret.test
+<span class="nc">ServerAlias</span> www.eticaret.test
+<span class="nc">ErrorLog</span> "logs/eticaret.test-error.log"
+<span class="nc">CustomLog</span> "logs/eticaret.test-access.log
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Kendi ayarlarınıza göre düzenledikten sonra Xampp ı yeniden başlatın</p>
+:ET

@@ -1,0 +1,28 @@
+I"8<p>Merhaba, httrack websitelerini internetiniz yokken kullanmak amaçlı üretilmiş bir yazılımdır. Windows tarafında sıkça kullandığım bu yazılımın linux tarafında terminal üzerinden nasıl kullanılacağı ile ilgili bir döküman hazırlamak istedim.</p>
+
+<!-- excerpt separator -->
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>httrack <span class="c">#programı kuruyoruzEnter</span>
+project name : <span class="c">#projenin ismi</span>
+Base path <span class="o">(</span><span class="k">return</span><span class="o">=</span>/home/baba/websites/<span class="o">)</span>: <span class="c">#projenin indirileceği dizin</span>
+Enter URLs <span class="o">(</span>separated by commas or blank spaces<span class="o">)</span> : <span class="c">#Kaydedeceğiniz websitesinin adresi</span>
+
+</code></pre></div></div>
+
+<p>Action (enter) Kısmında ki menüler ise şöyle :</p>
+
+<ul>
+  <li>Siteyi Kopyala</li>
+  <li>Siteyi sihirbaz yöneticisi ile kopyala</li>
+  <li>Sadece dosyaları çek</li>
+  <li>Tüm linklerin bir kopyasını çek(yanlışta biliyor olabilirim kullanmadım)</li>
+  <li>Bookmark testi uygula</li>
+  <li>Çıkış</li>
+</ul>
+
+<p>Daimi olarak 1 numarayı kullanıyorum diğerlerini kullanma ihtiyacı hissetmedim. Bazı websiteleri httrack karşı önlem almış olabilir. Her urlyi çekeceksiniz diye bir kaide yok :) Çevrim dışı olarak indirdiğiniz siteyi mutlaka sağ tık -&gt; öğeyi incele menüsünden muhakkak inceleyiniz. Eğer kırmızıyla yazılmış yazılar görüyor iseniz onları düzeltmeniz gerekebilir.</p>
+
+<ol>
+  <li><a href="https://www.youtube.com/channel/UCJyK4D5BcoPXjV5T8N8-liA?view_as=subscriber" target="\_blank" rel="noopener noreferrer">Video Link</a></li>
+</ol>
+:ET

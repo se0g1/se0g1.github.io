@@ -1,0 +1,24 @@
+I"�<p>Gökhan Kandemir’in <a href="http://kablosuzkedi.com/index.php/2017/10/24/codeigniter-3-kitabi-cikti/" target="\_blank" rel="noopener noreferrer">codeigniter kitabı</a> aldıktan,çalışma yapabilmek için codeigniteri kurmam gerekliydi. Kurulum gayet basit,localde çalışabilmek için farklı bir ayara gerek kalmıyor ancak sunucu tarafında bir kaç ayar daha yapmanız gereklidir.Dileyen olursa o ayarlarıda paylaşırım.</p>
+
+<!-- excerpt separator -->
+
+<ol>
+  <li><a href="https://yuceltoluyag.github.io/linux-uzerinde-apache2-mysql-phpmyadmin_14/">Apache Kurmalısınız</a> <a href="https://yuceltoluyag.github.io/arch-linux-lampp-kurulumuphp7xmariadbmy/">Arch linux için Tıklayın</a></li>
+  <li><a href="https://codeigniter.com/download" target="\_blank" rel="noopener noreferrer">Codeigniter</a> sayfasından indirme bağlantımızı kopyalıyoruz. Şu an ki versiyon 3.1.9</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>wget https://github.com/bcit-ci/CodeIgniter/archive/3.1.9.zip
+unzip 3.1.6.zip
+<span class="nb">mv </span>CodeIgniter-3.1.6 codeigniter
+<span class="nb">sudo chown</span> <span class="nt">-R</span> sistemkullaniciadiniz:sistemkullanıcıadınız /var/www/html/
+<span class="nb">cp</span> <span class="nt">-R</span> codeigniter /var/www/html/codeigniter
+service apache2 restart
+
+</code></pre></div></div>
+
+<p><a href="http://localhost/codeigniter" target="\_blank" rel="noopener noreferrer">http://localhost/codeigniter</a> adresinden CI ‘ ya ulaşabilirsiniz.</p>
+
+<ol>
+  <li><a href="https://www.youtube.com/channel/UCJyK4D5BcoPXjV5T8N8-liA?view_as=subscriber" target="\_blank" rel="noopener noreferrer">Video Link</a></li>
+</ol>
+:ET

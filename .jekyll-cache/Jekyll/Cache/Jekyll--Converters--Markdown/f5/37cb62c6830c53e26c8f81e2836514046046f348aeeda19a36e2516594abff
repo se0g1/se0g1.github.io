@@ -1,0 +1,276 @@
+I"�#<p>Merhaba, çok uzun bir süre önce Saf Arch Linux’a geçiş yaptım. Notlarımı bir türlü bloguma aktarma fırsatım olmadı. Bundan sonra ki yazılarım Arch Linux üzerine olacaktır. Soru gelirse Ubuntu, Linux Mint vb dağıtımlarada ara ara yer vereceğim.</p>
+
+<!-- excerpt separator -->
+
+<div class="box">
+  <p>Bu <strong>archlampp</strong> serisinin 1. yazısıdır Toplamda 4 bölümden oluşmaktadır.</p>
+
+  <ul class="directory-list">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <i>Arch Linux Lampp Kurulumu(PHP7x+MariaDB+Mysql+Phpmyadmin)</i>
+      
+    </li>
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/arch-linux-apachelampp-sanal-sunucu/">Arch Linux Apache(lampp) Sanal Sunucu Kurulumu</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/virtualbox-vagrant-laravel-arch-linux/">Archlinux üzerinde Virtualbox + Vagrant + Laravel + Phpmyadmin Kurulumu(Homestead)</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/archlinux-valet-kurulumu/">Arch Linux Laravel Valet Kurulumu</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+<h1 id="apache-kurulumu">Apache Kurulumu</h1>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> apache
+<span class="nb">sudo </span>nano /etc/httpd/conf/httpd.conf
+
+</code></pre></div></div>
+
+<ul>
+  <li>Burada LoadModule unique_id_module modules/mod_unique_id.sobaşına diez(#) işareti koyuyoruz. Kaydedip çıkıyoruz. Nano kullanımda F3 ardından F2 ye basarsanız hızlı kaydet işlevi görür. Nano yerine gedit subl veya mousepad artık sisteminizde ne yüklüyse onuda kullanabilirsiniz.</li>
+</ul>
+
+<h1 id="mysql--mariadb-kurulumu">Mysql &amp; MariaDB Kurulumu</h1>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>systemctl <span class="nb">enable </span>httpd
+<span class="nb">sudo </span>systemctl restart httpd
+<span class="nb">sudo </span>pacman <span class="nt">-S</span> mysql
+<span class="nb">sudo </span>mysql_install_db <span class="nt">--user</span><span class="o">=</span>mysql <span class="nt">--basedir</span><span class="o">=</span>/usr <span class="nt">--datadir</span><span class="o">=</span>/var/lib/mysql
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>mysqld
+<span class="nb">sudo </span>systemctl start mysqld
+mysql_secure_installation
+</code></pre></div></div>
+
+<ul>
+  <li>mysql_secure_installation dan sonra change the root password seçeniğine y ye basıp şifre unutmayacağınız bir şifre girin. Diğer tüm seçeneklere Y diyebilirsiniz. Sistem diliniz Türkçe ise E harfine basmanız yeterlidir. Thanks for using MariaDB yazısını gördüyseniz tamamdır.</li>
+</ul>
+
+<h2 id="php-kurulumu">PHP Kurulumu</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> php php-apache
+<span class="nb">sudo </span>nano /etc/httpd/conf/httpd.conf
+
+</code></pre></div></div>
+
+<ul>
+  <li>Burada LoadModule mpm_event_module modules/mod_mpm_event.so başına diez(#) işareti koyuyoruz.</li>
+  <li>Sayfanın en altınada Şu kodları ekleyin.</li>
+</ul>
+
+<h3 id="apache-konfigurasyonu">Apache Konfigurasyonu</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>LoadModule mpm_prefork_module modules/mod_mpm_prefork.so
+LoadModule php7_module modules/libphp7.so
+AddHandler php7-script php
+Include conf/extra/php7_module.conf
+
+<span class="c">#phpMyAdmin configuration</span>
+Include conf/extra/phpmyadmin.conf
+</code></pre></div></div>
+
+<h1 id="phpmyadmin-kurulumu">PHPMyadmin Kurulumu</h1>
+
+<ul>
+  <li>F3 ardından F2 ye basıyoruz.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> phpmyadmin
+<span class="nb">sudo </span>nano /etc/php/php.ini
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="chroma"><code>### PHPini Konfigurasyonu
+- php.ini dosyasının içerisinde
+  ```shell
+  extension=mysqli.so
+  extension=curl
+  extension=mysqli
+  extension=pdo_dblib
+  extension=pdo_mysql
+  extension=pdo_odbc
+  extension=pdo_pgsql
+  extension=pdo_sqlite
+  extension=zip
+</code></pre></div></div>
+
+<p>İsimlerinin başında bulunan ; işaretlerini kaldırıyoruz. Burada eksta aktif etmek isteidğiniz bir eklenti varsa aynı işlemi yapabilirsiniz. PHP ini içerisinde yapmamız gereken bir diğer ayar ise :</p>
+
+<h3 id="hataları-gösterme">Hataları Gösterme</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="p">;</span> <span class="o">[</span>http://php.net/display-errors]<span class="o">(</span>http://php.net/display-errors<span class="o">)</span>
+display_errors <span class="o">=</span> On
+
+</code></pre></div></div>
+
+<p>Burası normalde <strong>Off</strong> dur. <strong>On</strong> yaparak local üzerinde beyaz sayfa,sayfa görüntülenemiyor gibi ekranlar yerine yaptığımız hatanın çıktısını görebilirsiniz. Bölümü rahat bulabilmeniz için üstünde ki veriyide ekledim.</p>
+
+<h4 id="phpmyadmin-konfigurasyonu">PHPMyadmin Konfigurasyonu</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>nano /etc/httpd/conf/extra/phpmyadmin.conf
+</code></pre></div></div>
+
+<ul>
+  <li>Dosyanın içerisine şunları yapıştırın.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>Alias /phpmyadmin <span class="s2">"/usr/share/webapps/phpMyAdmin"</span>
+&lt;Directory <span class="s2">"/usr/share/webapps/phpMyAdmin"</span><span class="o">&gt;</span>
+DirectoryIndex index.php
+AllowOverride All
+Options FollowSymlinks
+Require all granted
+&lt;/Directory&gt;
+
+</code></pre></div></div>
+
+<p>Ardından</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>systemctl restart httpd
+</code></pre></div></div>
+
+<p>diyerek işlemlerimizi tamamlamış oluyoruz.</p>
+
+<p>Yukarıda bazı eklentileri aktif ettik,bunları sisteme yüklemez isek lamp düzgün çalışmayacaktır.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> php-dblib
+<span class="nb">sudo </span>pacman <span class="nt">-S</span> php-pgsql php-sqlite php-gd php-odbc
+<span class="nb">sudo </span>pacman <span class="nt">-Syu</span>
+
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>php <span class="nt">-v</span> <span class="c">#yazdığınızda eğer error ifadesini görmüyorsanız işlemleriniz tamamdır.</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>PHP 7.2.2 <span class="o">(</span>cli<span class="o">)</span> <span class="o">(</span>built: Jan 30 2018 19:18:38<span class="o">)</span> <span class="o">(</span> NTS <span class="o">)</span>
+Copyright © 1997–2018 The PHP Group
+Zend Engine v3.2.0, Copyright © 1998–2018 Zend Technologies
+
+</code></pre></div></div>
+
+<h2 id="ekstra-bilgiler">Ekstra Bilgiler</h2>
+
+<p>Projelerinizi atacağınız dosyalar <strong>/srv/http/</strong></p>
+
+<p>Yetki vermediğiniz durumlarda kopyala vb işlemler yapamazsınız</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo chmod </span>o+w /srv/http/ <span class="c">#veya</span>
+<span class="nb">sudo chown</span> <span class="nt">-R</span> friday13:friday13 /srv/http/
+</code></pre></div></div>
+
+<p>Genelde 2 yöntemi kullanıyorum. Ancak projelerde yükleme işlemleri yapıldığı zaman resmin veya dosyanın gideceği klasör bugdamı kalıyor nedir işlem başarılı olsa dahi yazmıyor. Bu gibi durumlarda ilk yöntemle klasöre yazma izni veriyorum. Belki benim bilgisayarıma özel bir durumdur tam olarak bilemiyorum ama başınıza gelirse uygularsınız.</p>
+
+<!-- Feel free to change the width and height to your desired video size. -->
+
+<div class="embed-container">
+  <iframe class="lazyload" data-src="https://www.youtube.com/embed/SElIrg0owl8" width="700" height="480" frameborder="0" allowfullscreen="" title="Arch Linux Lampp Kurulumu(PHP7x+MariaDB+Mysql+Phpmyadmin)">
+  </iframe>
+</div>
+
+:ET

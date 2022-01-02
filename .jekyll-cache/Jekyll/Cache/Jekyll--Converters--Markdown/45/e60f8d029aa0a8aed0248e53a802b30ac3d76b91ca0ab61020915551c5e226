@@ -1,0 +1,157 @@
+I"�"<p>Merhaba , windows üzerinden paylaşılan dosya,yazıcı vb gibi uygulamara linux üzerinden nasıl erişebileceğimiz hakkında rehber hazırladım. Aslında bu soru bana yaklaşık 2–3 ay önce gelmişti, yoğunluk sebebiyle konuya cevap verememiştim. Config Dosyalarını ve tüm ayarları tek konuda yapacağım, bu sebeble gözünüz korkmasın atla deve değil..</p>
+
+<!-- excerpt separator -->
+
+<h1 id="samba-kurulumu">Samba Kurulumu</h1>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> samba // kurulumu yapıyoruz.
+
+</code></pre></div></div>
+
+<h2 id="ayar-dosyası">Ayar Dosyası</h2>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>
+<span class="nb">sudo </span>nano /etc/samba/smb.conf
+
+</code></pre></div></div>
+
+<p>dosyası oluşturup içerisine şunları yapıştırıyoruz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="o">[</span>global]
+usershare path <span class="o">=</span> /mnt/virtual/
+usershare max shares <span class="o">=</span> 100
+usershare allow guests <span class="o">=</span> <span class="nb">yes
+</span>usershare owner only <span class="o">=</span> <span class="nb">yes
+</span>workgroup <span class="o">=</span> WORKGROUP
+writable <span class="o">=</span> <span class="nb">yes
+</span>browsable <span class="o">=</span> <span class="nb">yes
+</span>security <span class="o">=</span> user
+map to guest <span class="o">=</span> Bad User
+guest account <span class="o">=</span> nobody
+guest ok <span class="o">=</span> no
+
+<span class="o">[</span>Public]
+
+path <span class="o">=</span> /mnt/virtual/public
+guest ok <span class="o">=</span> <span class="nb">yes
+</span>guest only <span class="o">=</span> <span class="nb">yes</span>
+
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo mkdir</span> /mnt/virtual
+
+</code></pre></div></div>
+
+<p>F3 Enter ve ardından F2 basıp çıkıyoruz. Yukarıda ki kısımları daha sonra videolu anlatımda anlatacağım, neyin ne işe yaradığı gibi..</p>
+
+<h3 id="kullanıcı-ekleme">Kullanıcı Ekleme</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>useradd paylas
+
+</code></pre></div></div>
+
+<p>diyerek bir kullanıcı oluşturuyorum.</p>
+
+<h4 id="yetki-verme">Yetki Verme</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>pdbedit <span class="nt">-a</span> <span class="nt">-u</span> paylas
+
+</code></pre></div></div>
+
+<p>kullanıcıya yetki ve şifre atayacağız. Bu şifreyi boş geçmeyin muhakkak bir şifre koyun, %100 olmasada problemlerle karşılaşıldığı oluyor. Bu şifreyi unutursanız</p>
+
+<h4 id="şifre-oluşturma">Şifre Oluşturma</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>smbpasswd paylas
+
+</code></pre></div></div>
+
+<p>diyerek ileride değiştirirsiniz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>systemctl restart smb.service nmb.service
+<span class="nb">sudo </span>systemctl start smb.service nmb.service
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>smb.service nmb.service
+
+</code></pre></div></div>
+
+<p>diyerek servisi önce yeniden başlattık sonra start verdik daha sonra sistem açılışında çalışması için aktif ettik.</p>
+
+<h1 id="dikkat-edilmesi-gerekenler">Dikkat Edilmesi Gerekenler</h1>
+
+<p><strong>Windows</strong> üzerinde paylaşım yaparken, <strong>muhakkak</strong> gelişmiş paylaşım ayarlarından <strong>şifreli</strong> <strong>paylaşımı</strong> <strong>kapatın</strong>. Dosya paylaşımı yaparken <strong>everyone</strong> ve <strong>guestide</strong> ekleyin. İsterseniz eklemeyin siz bilirsiniz :D <strong>smb://192.168.1.150</strong> yazdığınızda bağlantı sağlayacaktır. İp adresi <strong>örnektir</strong>. Paylaştığınız windowsun ipsini öğrenmek istiyorsanız Komut satırına ip config yazarak <strong>IPV4</strong> karşısında ki ip sizin paylaşım ip nizdir.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>mount <span class="nt">-t</span> cifs //ipadresi/paylasilanklasor /mnt/virtual <span class="nt">-o</span> <span class="nv">username</span><span class="o">=</span>olusturulankullaniciadi,password<span class="o">=</span>olusturulansifre,workgroup<span class="o">=</span>workgroup,iocharset<span class="o">=</span>utf8,uid<span class="o">=</span>olusturulankullaniciadi,gid<span class="o">=</span>root
+
+</code></pre></div></div>
+
+<p>ta ta ta taaaaaaa
+<img src="/assets/images/linux_samba.webp" alt="linux_samba_worked" /></p>
+
+<p>Not: Bu isteğe bağlı bir özelliktir. İhtiyacınız yoksa bu bölümü atlayın.</p>
+
+<h2 id="i̇steğe-bağlı-özellikler">İsteğe Bağlı Özellikler</h2>
+
+<p>“<strong>Usershares</strong>”, <strong>root</strong> olmayan kullanıcılara kendi <strong>paylaşım</strong> tanımlarını <strong>ekleme</strong>, <strong>değiştirme</strong> ve <strong>silme</strong> yeteneği sağlayan bir özelliktir.<strong>Thunar</strong> dosya yöneticisi kullananlar(xfce) aurdan <a href="https://aur.archlinux.org/packages/thunar-shares-plugin/" target="\_blank" rel="noopener noreferrer">thunar-shares-plugin</a> paketini yükleyin.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /var/lib/samba/usershares
+<span class="nb">sudo </span>groupadd <span class="nt">-r</span> sambashare
+<span class="nb">sudo chown </span>root:sambashare /var/lib/samba/usershares
+<span class="nb">sudo chmod </span>1770 /var/lib/samba/usershares
+
+</code></pre></div></div>
+
+<p>smb.conf dosyamızın en üstüne şunu ekleyelim</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>usershare path <span class="o">=</span> /var/lib/samba/usershares usershare max shares <span class="o">=</span> 100 usershare allow guests <span class="o">=</span> <span class="nb">yes
+</span>usershare owner only <span class="o">=</span> <span class="nb">yes</span>
+
+</code></pre></div></div>
+
+<p>Daha sonra sambashare grubuna ekleme yapalım</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>gpasswd sambashare <span class="nt">-a</span> paylas
+<span class="nb">sudo </span>systemctl restart smb.service nmb.service
+
+</code></pre></div></div>
+
+<p>Örnek bir smb.conf</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="o">[</span>global]
+<span class="p">;</span>inherit owner <span class="o">=</span> unix only <span class="p">;</span>
+<span class="p">;</span>inherit permissions <span class="o">=</span> <span class="nb">yes</span> <span class="p">;</span>
+create mask <span class="o">=</span> 0664
+directory mask <span class="o">=</span> 2755
+force create mode <span class="o">=</span> 0644
+force directory mode <span class="o">=</span> 2755
+…
+<span class="o">[</span>media]
+comment <span class="o">=</span> Medya Paylaşımı
+path <span class="o">=</span> /mnt/media
+valid <span class="nb">users</span> <span class="o">=</span> greg @pcusers
+force group <span class="o">=</span> +pcusers
+public <span class="o">=</span> no
+writable <span class="o">=</span> <span class="nb">yes
+</span>create mask <span class="o">=</span> 0664
+directory mask <span class="o">=</span> 2775
+force create mode <span class="o">=</span> 0664
+force directory mode <span class="o">=</span> 2775
+
+<span class="o">[</span>public]
+comment <span class="o">=</span> Public isimli paylaşım dosyalarım
+path <span class="o">=</span> /mnt/public
+public <span class="o">=</span> <span class="nb">yes read
+</span>only <span class="o">=</span> <span class="nb">yes </span>write
+list <span class="o">=</span> archie printable <span class="o">=</span> no
+
+<span class="o">[</span>guests]
+comment <span class="o">=</span> yazma erişimi olan genel paylaşım
+path <span class="o">=</span> /mnt/guests
+public <span class="o">=</span> <span class="nb">yes
+</span>only guest <span class="o">=</span> <span class="nb">yes
+</span>writable <span class="o">=</span> <span class="nb">yes
+</span>printable <span class="o">=</span> no
+
+</code></pre></div></div>
+
+<p>Bu konu hakkında videolu anlatım yapacağım. Bu birinci bölüm olsun : )</p>
+:ET

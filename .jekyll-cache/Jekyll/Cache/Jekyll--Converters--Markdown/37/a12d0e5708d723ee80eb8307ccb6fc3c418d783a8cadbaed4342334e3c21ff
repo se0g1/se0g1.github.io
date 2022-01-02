@@ -1,0 +1,231 @@
+I"l<<p><img src="/assets/images/laravel_7x_ide_helper.webp" alt="Laravel İde Helper" /></p>
+
+<h2 id="nedir-">Nedir ?</h2>
+
+<p>İDE: Rahat bir şekilde geliştirme yapmanızı sağlayan,içerisinde birçok tool(araçlar) barındıran ve geliştirme sürecini organize eden yazılımlara denir.Örnek vericek olursam : Eclipse, Microsoft Visual Studio, Code Blocks, Dev-C++, Anjuta, KDevelop, NetBeans,Jetbrains ürünleri</p>
+
+<!-- excerpt separator -->
+
+<div class="box">
+  <p>Bu <strong>phpstorm</strong> serisinin 3. yazısıdır Toplamda 3 bölümden oluşmaktadır.</p>
+
+  <ul class="directory-list">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/phpstorm-icerisinde-cmder-kullanmak/">PHPStorm içerisinde cmder kullanmak</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/phpstorm-icerisinde-phpcsfixer/">Phpstorm içerisinde CS Fixer Kullanmak</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <i>Laravel ide helper kullanımı</i>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+<h2 id="laravel-ide-helper-nedir-">Laravel ide helper Nedir ?</h2>
+
+<p>PHP geliştiricilerinin en çok kullandığı ide : <strong>PHPStorm</strong> dur. Şu sitede en çok kullanılan ide ve kod editörleri listenmiş <a href="https://www.cloudways.com/blog/top-ide-and-code-editors-php-development/#phpstorm" target="\_blank" rel="noopener noreferrer">Top Code Editors and IDE for PHP Development of 2020</a> <strong>PHPStorm</strong> kodları otomatik olarak algılayabilsede,bazı model,class,route vb verilerini göremeyebiliyor. Bu çalışması için bir sorun teşkil etmesede,benim gibi takıntısı olan insanlar için üretilmiş bir pakettir. Eğer laravel ide paketi olmasa idi , <strong>PHPDoc</strong> yardımıyla bu verileri elinizle girmeniz gerekecekti. PHPDoc nedir, bilmiyorsanız. <strong>Abdulkadir Dılo Sürücü</strong>‘nün anlatımına şuradan ulaşabilirsiniz :</p>
+
+<!-- Feel free to change the width and height to your desired video size. -->
+
+<div class="embed-container">
+  <iframe class="lazyload" data-src="https://www.youtube.com/embed/0NZHzmAgH-M" width="700" height="480" frameborder="0" allowfullscreen="" title="Laravel ide helper kullanımı">
+  </iframe>
+</div>
+
+<p>Bu sayede laravel ide paketinin temelini anlayabilirsiniz.</p>
+
+<h2 id="laravel-ide-helper-kullanımı">Laravel ide helper kullanımı</h2>
+
+<ul>
+  <li>Composer yardımıyla projenize şu paketi kuruyorsunuz.</li>
+</ul>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="n">composer</span> <span class="k">require</span> <span class="o">--</span><span class="n">dev</span> <span class="n">barryvdh</span><span class="o">/</span><span class="n">laravel</span><span class="o">-</span><span class="n">ide</span><span class="o">-</span><span class="n">helper</span>
+
+</code></pre></div></div>
+
+<p>Daha sonra</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">ide</span><span class="o">-</span><span class="n">helper</span><span class="o">:</span><span class="n">generate</span>
+</code></pre></div></div>
+
+<p>Komutunu çalıştırıyorsunuz. Bu komutla birlikte proje dizinizde . <strong>_ide_helper.php</strong> isminde dosya oluşuyor.</p>
+
+<p>Bu dosyayı configure etmek isterseniz</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">vendor</span><span class="o">:</span><span class="n">publish</span> <span class="o">--</span><span class="n">provider</span><span class="o">=</span><span class="s2">"Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider"</span> <span class="o">--</span><span class="n">tag</span><span class="o">=</span><span class="n">config</span>
+
+</code></pre></div></div>
+
+<p>Komutundan sonra <strong>Config</strong> klasörünüzün altına <strong>ide-helper.php</strong> adlı dosya oluşacaktır.</p>
+
+<p>Diyelim ki</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="n">user</span><span class="o">::</span><span class="nf">create</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>create üzerine geldiğinizde sanki bu fonksiyon yokmuş gibi altı çizili bir uyarı gösterir.(Bu uyarı temanıza göre üstünü renklendirebilir,altını çizebilir yada sağ kolonda sarı bir uyarı gösterebilir) Normalde bu uyarının projenin çalışıp çalışmamasına bir etkisi yoktur, ancak yukarıda dediğim gibi kişisel bir takıntı =) Bu sorunsalı aşmak için</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">ide</span><span class="o">-</span><span class="n">helper</span><span class="o">:</span><span class="n">models</span> <span class="nc">User</span>
+
+</code></pre></div></div>
+
+<p>eğer model dosyalarınızı ayrı bir dizinde tutuyorsanız</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="n">php</span> <span class="n">artisan</span> <span class="n">ide</span><span class="o">-</span><span class="n">helper</span><span class="o">:</span><span class="n">models</span> <span class="nc">Model\User</span>
+</code></pre></div></div>
+
+<p>Bu sayede verdiğiniz model dosyasıyla ilgili tüm model,class,view,routeleri tarar ona göre bir docblock oluşturur. Komutun işlemini tamamlamasıyla Post model dosyasını açarsanız başında şöyle açıklamalar göreceksiniz.</p>
+
+<p>UserModel</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="o">/</span><span class="err">\</span><span class="o">*</span><span class="err">\</span><span class="o">*</span>
+
+<span class="o">-</span> <span class="nc">App\User</span> <span class="err">\</span><span class="o">*</span> <span class="err">\</span><span class="o">*</span> <span class="o">@</span><span class="n">property</span> <span class="n">int</span> <span class="nv">$id</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">property</span> <span class="n">string</span> <span class="nv">$name</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">property</span> <span class="n">string</span> <span class="nv">$email</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">property</span> <span class="err">\</span><span class="nc">Illuminate\Support\Carbon</span><span class="o">|</span><span class="kc">null</span> <span class="nv">$email_verified_at</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">property</span> <span class="n">string</span> <span class="nv">$password</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">property</span> <span class="n">int</span> <span class="nv">$branch_id</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">property</span> <span class="n">int</span> <span class="nv">$role_id</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">property</span> <span class="n">string</span><span class="o">|</span><span class="kc">null</span> <span class="nv">$remember_token</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">property</span> <span class="err">\</span><span class="nc">Illuminate\Support\Carbon</span><span class="o">|</span><span class="kc">null</span> <span class="nv">$created_at</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">property</span> <span class="err">\</span><span class="nc">Illuminate\Support\Carbon</span><span class="o">|</span><span class="kc">null</span> <span class="nv">$updated_at</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">property</span><span class="o">-</span><span class="n">read</span> <span class="err">\</span><span class="nc">Illuminate\Notifications\DatabaseNotificationCollection</span><span class="o">|</span><span class="err">\</span><span class="nc">Illuminate\Notifications\DatabaseNotification</span><span class="p">[]</span> <span class="nv">$notifications</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">property</span><span class="o">-</span><span class="n">read</span> <span class="n">int</span><span class="o">|</span><span class="kc">null</span> <span class="nv">$notifications_count</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">method</span> <span class="k">static</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\Builder</span><span class="o">|</span><span class="err">\</span><span class="nc">App\User</span> <span class="nf">newModelQuery</span><span class="p">()</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">method</span> <span class="k">static</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\Builder</span><span class="o">|</span><span class="err">\</span><span class="nc">App\User</span> <span class="nf">newQuery</span><span class="p">()</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">method</span> <span class="k">static</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\Builder</span><span class="o">|</span><span class="err">\</span><span class="nc">App\User</span> <span class="nf">query</span><span class="p">()</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">method</span> <span class="k">static</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\Builder</span><span class="o">|</span><span class="err">\</span><span class="nc">App\User</span> <span class="nf">whereBranchId</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">method</span> <span class="k">static</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\Builder</span><span class="o">|</span><span class="err">\</span><span class="nc">App\User</span> <span class="nf">whereCreatedAt</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">method</span> <span class="k">static</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\Builder</span><span class="o">|</span><span class="err">\</span><span class="nc">App\User</span> <span class="nf">whereEmail</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">method</span> <span class="k">static</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\Builder</span><span class="o">|</span><span class="err">\</span><span class="nc">App\User</span> <span class="nf">whereEmailVerifiedAt</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">method</span> <span class="k">static</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\Builder</span><span class="o">|</span><span class="err">\</span><span class="nc">App\User</span> <span class="nf">whereId</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">method</span> <span class="k">static</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\Builder</span><span class="o">|</span><span class="err">\</span><span class="nc">App\User</span> <span class="nf">whereName</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">method</span> <span class="k">static</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\Builder</span><span class="o">|</span><span class="err">\</span><span class="nc">App\User</span> <span class="nf">wherePassword</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">method</span> <span class="k">static</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\Builder</span><span class="o">|</span><span class="err">\</span><span class="nc">App\User</span> <span class="nf">whereRememberToken</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">method</span> <span class="k">static</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\Builder</span><span class="o">|</span><span class="err">\</span><span class="nc">App\User</span> <span class="nf">whereRoleId</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">method</span> <span class="k">static</span> <span class="err">\</span><span class="nc">Illuminate\Database\Eloquent\Builder</span><span class="o">|</span><span class="err">\</span><span class="nc">App\User</span> <span class="nf">whereUpdatedAt</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+<span class="o">-</span> <span class="o">@</span><span class="n">mixin</span> <span class="err">\</span><span class="nc">Eloquent</span>
+  <span class="err">\</span><span class="o">*/</span>
+
+</code></pre></div></div>
+
+<p>Composer.json dosyanıza, şu script komutlarını eklerseniz</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="s2">"scripts"</span><span class="o">:</span> <span class="p">{</span>
+<span class="s2">"post-update-cmd"</span><span class="o">:</span> <span class="p">[</span>
+<span class="s2">"Illuminate</span><span class="se">\\</span><span class="s2">Foundation</span><span class="se">\\</span><span class="s2">ComposerScripts::postUpdate"</span><span class="p">,</span>
+<span class="s2">"@php artisan ide-helper:generate"</span><span class="p">,</span>
+<span class="s2">"@php artisan ide-helper:meta"</span>
+<span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Bu komutla birlikte, composeri her güncellediğinizde,yeni DOC larınız otamatik olarak konfigurasyon dosyanıza yazılacaktır.</p>
+
+<p>Bu şekilde bu tip uyarılardan kurtulmuş oluyoruz. Daha fazlası için <a href="https://github.com/barryvdh/laravel-ide-helper/blob/master/README.md" target="\_blank" rel="noopener noreferrer">laravel ide helper wiki</a> sayfasına bakabilirsiniz. Phpstorm ile ilgili daha fazla yazıya <a href="https://yuceltoluyag.github.io/tag/phpstorm/" target="\_blank" rel="noopener noreferrer">buradan ulaşabilirsiniz</a></p>
+:ET

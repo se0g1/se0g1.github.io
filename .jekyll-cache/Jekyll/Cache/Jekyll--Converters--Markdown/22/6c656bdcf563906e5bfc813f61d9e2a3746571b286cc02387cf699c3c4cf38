@@ -1,0 +1,82 @@
+I"/<p><img src="/assets/images/composer.webp" alt="Composer Slow Download Fixed Solution" /></p>
+
+<!-- excerpt separator -->
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>
+composer diagnose
+Checking platform settings: OK
+Checking git settings: OK
+Checking http connectivity to packagist: OK
+Checking https connectivity to packagist: OK
+Checking github.com rate limit: 1 OK
+Checking disk free space: OK
+Checking pubkeys: FAIL Missing pubkey <span class="k">for </span>tags verification
+Missing pubkey <span class="k">for </span>dev verification
+Run composer self-update <span class="nt">--update-keys</span> to <span class="nb">set </span>them up Checking composer version: OK
+Composer version: 1.9.1 PHP version: 7.4.0 PHP binary path: /usr/bin/php
+
+</code></pre></div></div>
+
+<p>Yukarıda ki gibi hata alıyorsanız <a href="https://composer.github.io/pubkeys.html" target="\_blank" rel="noopener noreferrer">Composer PUBLIC KEY</a> adresine gidip güncel keyleri almanız gerekmektedir. Bu keyleri iki yöntemle oluşturabilirsiniz.</p>
+
+<ul>
+  <li>Terminal yöntemi ile
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>composer self-update <span class="nt">--update-keys</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>komutunu çalıştırdak sonra pubkeys linkinde ki keyleri sırasıyla yapıştırın. (Yapıştırırken, elinizi korkak alıştırmayın tümü seçip yapıştırabilirsiniz :)</p>
+
+<p>Diğer yöntem ise Composer ayarlarınızın bulunduğu klasöre giderek (<strong>/home/kullaniciadiniz/.config/composer/)</strong> bu dizine iki tane dosya oluşturuyoruz.</p>
+
+<ol>
+  <li>keys.dev.pub</li>
+  <li>keys.tags.pub</li>
+</ol>
+
+<p>Bu dosyaların içerisine sırasıyla pubkeys linkinde ki keyleri yapıştırıyoruz. Terminaliniz açıksa kapatın ve yeniden açın</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>composer diagnose
+Checking platform settings: OK
+Checking git settings: OK
+Checking http connectivity to packagist: OK
+Checking https connectivity to packagist: OK
+Checking github.com rate limit: 1 OK
+Checking disk free space: OK
+Checking pubkeys: Tags Public Key Fingerprint: 57815BA2 7E54DC31 7ECC7CC5 573090D0 87719BA6 8F3BB723 4E5D42D0 84A14642 Dev Public Key Fingerprint: 4AC45767 E5EC2265 2F0C1167 CBBB8A2B 0C708369 153E328C AD90147D AFE50952 OK
+Checking composer version: OK
+Composer version: 1.9.1 PHP version: 7.4.0 PHP binary path: /usr/bin/php
+
+</code></pre></div></div>
+
+<p>Şunu belirtmeliyim ki yapılan işlemlere composer tarafında bazen <strong>anlık tepki</strong> alamıyorsunuz. Yani bu configin tanınması bir kaç dakika alabiliyor. O yüzden yaptım hala aynı diye düşünmeyin.. Ortalama <strong>5 dakika</strong> geçtikten sonra halen devam ediyorsa alternatif olarak şu yöntemleride deneyebilirsiniz.</p>
+
+<p><strong>Alternatif 1</strong>
+vvv komutunu kullanabilirsiniz örneğin</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>composer <span class="nt">-vvv</span> require phpunit/phpunit
+</code></pre></div></div>
+
+<p><strong>Alternatif 2</strong>
+Bildiğiniz üzere paketler genel olarak packagist üzerinden yüklenir. Packagist composer ayar dosyamıza ekleyebiliriz.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>composer config <span class="nt">--global</span> repo.packagist composer https://packagist.org
+
+</code></pre></div></div>
+
+<p><strong>Alternatif 3</strong>
+Aslında bunu en başta mı versem diye düşündüm. Özellikle sunucu tarafında composer kullanıyorsanız IPV6 üzerinde timeout hatası alıyorsanız şu komutu çalıştırmalısınız</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>sh <span class="nt">-c</span> <span class="s2">"echo 'precedence ::ffff:0:0/96 100' &amp;gt;&amp;gt; /etc/gai.conf"</span>
+
+</code></pre></div></div>
+
+<p>Detaylı bilgi için <a href="https://getcomposer.org/doc/articles/troubleshooting.md#operation-timed-out-ipv6-issues-" target="\_blank" rel="noopener noreferrer">https://getcomposer.org/doc/articles/troubleshooting.md#operation-timed-out-ipv6-issues-</a></p>
+
+<p><strong>Alternatif 4</strong></p>
+
+<p>Yapılacak herşeyi yaptınız, son çare olarak parelel composer reposunu deneyebilirsiniz.Detaylı bilgi ve kurulum için <a href="https://github.com/hirak/prestissimo" target="\_blank" rel="noopener noreferrer">https://github.com/hirak/prestissimo</a> göz atabilirsiniz.</p>
+
+<p><strong>Tekrar belirtiyorum</strong> yapılan işlemlerden sonra ortalama <strong>BEŞ(5)</strong> dakika bekleyin. İşleme tekrar başlamadan önce composer clear-cache ve composer dump-autoload komutlarını kullandıktan sonra başlayın.</p>
+:ET

@@ -1,0 +1,52 @@
+I"�<p>Merhaba, yıllar yıllar önce keşfettiğim, halen aktif olarak kullandığım bir eklentiden bahsedeceğim. Her <strong>dizi &amp; film</strong> izlediğimde bundan mutlaka bahsetmeliyim diyorum ama hep unutuyorum :) <strong>Film</strong> ve <strong>dizileri ingilizceye</strong> aşina olmak(<strong>kulak</strong>), <strong>orjinal ses tonları</strong> <strong>filmin</strong> veya <strong>dizinin</strong> içerisine daha çok çektiği için <strong>alt yazılı</strong> izlemeyi seviyorum. O yıllarda Türkçe alt yazı servisleri vardı oradan bakıp uyumlu olan içeriği bulmaya çalışırdık.(Bilmeyenler için çok zahmetli bir durumdu). O zamanlar hizmet veren siteler aktif olduğu için bu eklenti benim için alternatif yöntemdi. Son yıllarda hizmet veren sitelerin kapanması üzerine bu eklentiyi sıkça kullanıyorum.</p>
+
+<!-- excerpt separator -->
+
+<div class="details admonition tip open">
+  <div class="details-summary admonition-title"><svg class="maicon icon icon-diamonds">
+    <use xlink:href="#icon-diamonds"></use>
+  </svg>Bilgi<svg class="details-icon icon icon-circle-right">
+    <use xlink:href="#icon-circle-right"></use>
+  </svg></div>
+  <div class="details-content">
+    <div class="admonition-content"><p>Yeni Sürümlerde eklenti yüklemeden bu özellik geliyor. Görünüm Sekmesinde VLSUB menüsü varsa,eklentiyi kurmanıza gerek yoktur.</p>
+</div>
+  </div>
+</div>
+
+<h1 id="kurulum">Kurulum</h1>
+
+<ol>
+  <li><a href="https://www.videolan.org/vlc/index.tr.html" target="\_blank" rel="noopener noreferrer">VLC media player</a> indirin.(ücretsiz ve açık kaynak kodlu bir programdır.)</li>
+  <li>Eğer Görünüm menüsü altında vlsub eklentisi görünmüyorsa şu işlemleri uygulayın:</li>
+</ol>
+
+<p><img src="/assets/images/vlsub0.webp" alt="vlsub" /></p>
+
+<p>Eklentiyi <a href="https://addons.videolan.org/p/1154045/" target="\_blank" rel="noopener noreferrer">buradan</a> indirdikten sonra <strong>C:\Program Files\VideoLAN\VLC\lua\extensions içerisine kopyalıyoruz.</strong> Bu kopyala esnasında vlc açık <strong>olmamalıdır</strong>.</p>
+
+<h1 id="eklenti-dizinleri">Eklenti Dizinleri</h1>
+
+<ul>
+  <li>Windows (Tüm kullanıcılar): %ProgramFiles%VideoLANVLCluaextensions</li>
+  <li>Windows (Geçerli kullanıcı): %APPDATA%vlcluaextensions</li>
+  <li>Linux (Tüm kullanıcılar): /usr/lib/vlc/lua/extensions/</li>
+  <li>Linux (Geçerli kullanıcı): ~/.local/share/vlc/lua/extensions/</li>
+  <li>Mac OS X (Tüm kulla): /Applications/VLC.app/Contents/MacOS/share/lua/extensions/</li>
+  <li>Mac OS X (Geçerli kullanıcı): /Users/%your_name%/Library/Application Support/org.videolan.vlc/lua/extensions/</li>
+</ul>
+
+<p>diğer işletim sistemleri için yukarıda ki gibidir. 3. İzleyeceğimiz dosyayı açtıktan sonra menülerden <strong>Görünüm-&gt;VLsub</strong> basıyoruz.<img src="/assets/images/vlbsub.webp" alt="vlsub_altyazi_bulma" /></p>
+
+<h1 id="altyazı-bulma">Altyazı Bulma</h1>
+
+<ol>
+  <li>Aktif pencerede direk izlediğiniz ismi aratacak, dilerseniz silip kendinizde isim girebilirsiniz. Gelen sonuçlardan üzerine tıklayıp <strong>download section</strong> a tıklarsanız alt yazıyı indirip aktif eder. İnen alt yazıda aynı <strong>klasör</strong> dedir.</li>
+</ol>
+
+<p><img src="/assets/images/vlsub1.webp" alt="vlsub_altyazi_bulma" /></p>
+
+<h1 id="bilgi">Bilgi</h1>
+
+<p>indirmiş olduğum <strong>9 GB dı. İndirmiş olduğum</strong> site(Türkiye’ninde en bilinen sitelerinden birisi) içinde alt yazı var olarak bilgi verilmişti. Evet içerisinde alt yazı var ama ingilizce ydi hem de tüm sezonlar 😁 Bu yöntemi bilmeyen kullanıcılar şimdi amdin kardeşimizin kulaklarını çınlatıyordur 🤣</p>
+:ET

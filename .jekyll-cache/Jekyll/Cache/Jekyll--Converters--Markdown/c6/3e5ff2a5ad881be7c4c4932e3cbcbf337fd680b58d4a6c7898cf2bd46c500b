@@ -1,0 +1,150 @@
+I"�
+<p>Merhaba, Facebook <strong>Grup Kasma Hilesi</strong> adı altında size bir takım <strong>javascript</strong> kodları verilir, bu kodu konsola yapıştırıp arkadaşlarınızı davet ederdiniz. Bu durum facebook çalışanlarını rahatsız etmiş ki günlük arkadaş ekleme sınırını <strong>1000</strong> , toplu mesaj gönderme sınırını <strong>50</strong> gibi rakamlarla sınırlamıştır.</p>
+
+<!-- excerpt separator -->
+
+<div class="box">
+  <p>Bu <strong>facebook</strong> serisinin 1. yazısıdır Toplamda 4 bölümden oluşmaktadır.</p>
+
+  <ul class="directory-list">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <i>Facebook Toplu Arkadaş Ekleme(Gruba + Süreli)</i>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/facebook-otomatik-arkadas-ekleme-sureli/">Facebook Otomatik arkadaş ekleme + süreli + seçimli</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/facebook-toplu-grup-2021/">Facebook Gruba Toplu Arkadaş Ekleme Yeni Version</a>
+      
+    </li>
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/facebook-5000-arkadas-ekleme-sureli-v2/">Facebook 5000 arkadaş ekleme ( süreli)</a>
+      
+    </li>
+    
+    
+  </ul>
+</div>
+
+<p>Bu işlemi elinizle sıkılmadan yapsanız dahi, yapma hızınız macro kullanıp kullanmadığınızı algılayabiliyor. Bu durumda yapılacak tek şey kalıyor süreli ekleme yani insan ol ..</p>
+
+<p>Ekleme işlemini belirli süreler içerisinde yapılırsa zakirbörk abinin adamları durumu farketmiyor. Test sürecinde <strong>1K,2K ve 5K</strong> hesaplar üzerinde testler yaptım, en doğru süreyi bulmaya çalıştım. Çizelgem şu şekilde :</p>
+
+<ul>
+  <li>500 ve altı arkadaşı olanlar =&gt; 7–10 sn</li>
+  <li>1 K ve 2K =&gt; 13–20 sn</li>
+  <li>2K ve üstü =&gt; 20–60 sn</li>
+</ul>
+
+<p><a href="#facebook">Group Invite All</a> eklentisini tarayıcınıza ekleyip bu süreler arasında bir seçim yapın. Diğer sekmede işlemlerinize devam edebilirsiniz.</p>
+
+<!-- Feel free to change the width and height to your desired video size. -->
+
+<div class="embed-container">
+  <iframe class="lazyload" data-src="https://www.youtube.com/embed/G_oDPhADUso" width="700" height="480" frameborder="0" allowfullscreen="" title="Facebook Toplu Arkadaş Ekleme">
+  </iframe>
+</div>
+
+:ET

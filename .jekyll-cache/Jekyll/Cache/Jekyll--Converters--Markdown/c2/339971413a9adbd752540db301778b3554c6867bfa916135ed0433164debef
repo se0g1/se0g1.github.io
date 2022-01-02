@@ -1,0 +1,35 @@
+I"�<h1 id="neden">Neden</h1>
+
+<p>Merhaba, <strong>Spotify</strong> kullanırken müzikleri çevrimdışı dinleme özelliği için cuzi bir miktar premium hesabı istiyor, bu anlatımda premium’a gerek kalmadan beğendiğiniz playlistleri ücretsiz bir şekilde nasıl indireceğinizi anlatacağım. İnternette spotify downloander var ancak bazen çalışıyor bazen çalışmıyor uğraştırıyor ve stabil değil. Anlatacağım yöntemi aylardır kullanıyorum.</p>
+
+<!-- excerpt separator -->
+
+<h2 id="nasıl">Nasıl</h2>
+
+<ol>
+  <li>Spotify hesabınıza giriş yaptıktan sonra <a href="http://www.playlist-converter.net/" target="\_blank" rel="noopener noreferrer">http://www.playlist-converter.net/</a> bu siteye girip spotify sekmesinden login spotify butonunan tıklayıp hesabımıza giriş yapıyoruz.</li>
+  <li>İndirmek istediğimiz playlistimizi seçiyoruz
+<img src="/assets/images/spotify.webp" alt="spotify" /></li>
+</ol>
+
+<p>Playlistinizin uzunluğuna göre işlemin ne kadar süreceği değişebilir. Bittikten sonra sağ tarafa resimdeki gibi menü açılacak Bu menüden youtube aktar seçeneceğini seçeceğiz.</p>
+
+<p><img src="/assets/images/spotify-2.webp" alt="spotify-2" /></p>
+
+<ol>
+  <li>Login with Youtube to export to Youtube butonuna basıp google hesabımıza giriş yapıp listeyi aktaracağımız youtube hesabını seçiyoruz.</li>
+  <li>Liste aktarımı bitince resimdeki menüyü kullanıyoruz.</li>
+</ol>
+
+<p><img src="/assets/images/spotify-3.webp" alt="spotify-3" /></p>
+
+<ol>
+  <li>Linkimizi kopyalıyoruz</li>
+</ol>
+
+<p><img src="/assets/images/spotify-4.webp" alt="spotify-4" /></p>
+
+<p><a href="https://www.4kdownload.com/" target="\_blank" rel="noopener noreferrer">https://www.4kdownload.com/</a> isimli programın <strong>tam sürümünü</strong>kullanmalısınız linki programdaki linki yapıştır menüsüne tıklayıp video indir diyoruz.<strong>Ayrıştırmaya başlıyoruz,ayrıştırma bitince size mp3 mi video olarak mı indirmek istediğinizi soruyor</strong> ve mp3 olarak indiriyoruz.(Alternatif olarak <a href="https://github.com/ytdl-org/youtube-dl" target="\_blank" rel="noopener noreferrer">youtube-dl</a> kullanabilirsiniz.)</p>
+
+<p><img src="/assets/images/spotify-5.webp" alt="spotify-to-mp3" /></p>
+:ET

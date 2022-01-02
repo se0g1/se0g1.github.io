@@ -1,0 +1,214 @@
+I"R5<p>Merhaba, sublime text editörü üzerinde kullandığım eklenti ve temaları siz değerli takipçilerimle paylaşıyorum 🥳</p>
+
+<h2 id="sublime-text-eklenti-kurulumu">Sublime Text Eklenti Kurulumu</h2>
+
+<p>Öncelikle Sublime Text <strong>3</strong> versiyonunu kullanmaktayım. Editörümüze paket yükleyebilmek için ; <del><strong>view-&gt; show console</strong> açıp sürümünüze göre gerekli kodları yapıştırıp entere basmanız gerekli <a href="https://packagecontrol.io/installation" target="\_blank" rel="noopener noreferrer">Kodları buradan alabilirsiniz </a> ,eklentiyi yükledikten sonra ctrl + shift + p kombinasyonuyla paket menajerimizi açabiliriz. İnstall yazıp entere basın önünüze bir sekme daha gelecek kuracağınız paketin ismini yazın bu kadar : )</del></p>
+
+<div class="details admonition tip open">
+  <div class="details-summary admonition-title"><svg class="maicon icon icon-diamonds">
+    <use xlink:href="#icon-diamonds"></use>
+  </svg>Güncelleme<svg class="details-icon icon icon-circle-right">
+    <use xlink:href="#icon-circle-right"></use>
+  </svg></div>
+  <div class="details-content">
+    <div class="admonition-content"><p>ctrl+shift+ p basın <code class="language-plaintext highlighter-rouge">install package manager</code> seçin,koda gerek olmadan paket yöneticisini yükleyebilirsiniz.</p>
+</div>
+  </div>
+</div>
+
+<!-- excerpt separator -->
+
+<p>Ayarlarımı github repomdan kopyalayabilirsiniz <a href="https://github.com/yuceltoluyag/sublime-text-3" target="\_blank" rel="noopener noreferrer">Sublime Repom</a> + <a href="https://gist.github.com/yuceltoluyag/51b4391d44cfc353aad0d1731b56c39f" target="\_blank" rel="noopener noreferrer">Alternatif Ayarlarım</a></p>
+
+<h2 id="emmet">EMMET</h2>
+
+<p>Emmet kod yazma hızınızı artıracak mükemmel bir eklentidir. Kod yazmaya yeni başlayan arkadaşlara <strong>tavsiye etmiyorum</strong>.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="chroma"><code>#page&gt;div.logo+ul#navigation&gt;li*5&gt;a{Item $} #çıktısı şu şekilde olacaktır.
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"page"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"logo"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"navigation"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>Item 1<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>Item 2<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>Item 3<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>Item 4<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">""</span><span class="nt">&gt;</span>Item 5<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<h2 id="alignment">Alignment</h2>
+
+<p>Bu eklentiyle benim gibi düzen takıntısı olan için 😁 Bu eklenti kodlarınızı hizalamaya ve düzenlemeye yarıyor. <strong>Ctrl + alt + a</strong> ya basarak düzene sokabilirsiniz.</p>
+
+<h2 id="sublimegit">SublimeGit</h2>
+
+<p>Sublime Text için Git paketi,dökümanı için <a href="https://sublimegit.readthedocs.io/en/latest/" target="\_blank" rel="noopener noreferrer">Sublimegit Dökümantasyon</a> adresini inceleyebilirsiniz.</p>
+
+<h2 id="gitgutter">GitGutter</h2>
+
+<p>Sidebar’da projeniz üzerinde yaptığınız değişiklikleri gösteriyor. <code class="language-plaintext highlighter-rouge">git status</code> komutunun sublimedeki hali olarak düşünebilirsiniz.</p>
+
+<p><img src="/assets/images/GitGutter.gif" alt="GitGutter" /></p>
+
+<h2 id="githubinator">GitHubinator</h2>
+
+<p>Bu eklenti sublimetext içerisinde seçtiğiniz alanı github reponuzda aramaya yarıyor, acaba bunu nerede yazmışım derdine son</p>
+
+<p><img src="/assets/images/GitHubinator.webp" alt="GitHubinator" /></p>
+
+<h2 id="gitopenchangedfiles">GitOpenChangedFiles</h2>
+
+<p>Bu eklentinin gitgutter den farkı sadece değişiklik yapılmış satırları gösterip repo da aratıp toplama yapabilmesi :D <strong>ctrl+shift+o</strong> kısayol tuşunu kullanabilirsiniz.</p>
+
+<p><img src="/assets/images/GitOpenChangedFiles.gif" alt="GitOpenChangedFiles" /></p>
+
+<h2 id="sublimelinter">SublimeLinter</h2>
+
+<p>Sublime içerisinde kod hatalarını,uyarılarını gösteren harika bir eklentidir. <a href="http://www.sublimelinter.com/" target="\_blank" rel="noopener noreferrer">http://www.sublimelinter.com</a> Belgelerini mutlaka okuyun. Projede çalıştığınız dile göre ayrı ayrı paketleri bulunmaktadır. Örneğin ( <strong>SublimeLinter-jshint, SublimeLinter-php</strong> paketleri )</p>
+
+<p><img src="/assets/images/SublimeLinter.webp" alt="SublimeLinter" /></p>
+
+<h2 id="changequotes">ChangeQuotes</h2>
+
+<p>Bu en çok kullandığım eklentidir. Özellikle satır içerisinde ki çift tırnakları tek tırnak yapmak, PDO’da işimi kolaylaştırıyor.Eringeçlik değil hız hız 🙃 Bunun haricinde paket sisteminde <strong>SASS BABEL Siteleaf Liquid Syntax</strong> aratarak renklendirme sınıf ve eklentilerini kullanabilirsiniz.</p>
+
+<h2 id="sidebarenhancements">SidebarEnhancements</h2>
+
+<p>Normalde sol taraftaki sidebarda sağ tıkladığınızda açılan menüde çok fazla fonksiyon yoktur. Bu eklentiyle birlikte sidebar’a bir çok özellik eklenir.
+<img src="/assets/images/Side​Bar​Enhancements.webp" alt="SidebarEnhancements" /></p>
+
+<h2 id="brackethighlighter">BracketHighlighter</h2>
+
+<p>Bu eklenti seçtiğiniz tagın nerede başlayıp nerede kapandığını gösterir.</p>
+
+<p><img src="/assets/images/BracketHighlighter.webp" alt="BracketHighlighter" /></p>
+
+<h2 id="gutter-color">Gutter Color</h2>
+
+<p>Bu eklenti sayesinde renk seçimlerinizi ekstra bir program olmadan rahatça seçebileceksiniz. Ayrıca <strong>Color Highlighter</strong> kullanarak renk kodlarınızı renkli görebilirsiniz.</p>
+
+<p><img src="/assets/images/GutterColor.webp" alt="GutterColor" /></p>
+
+<h2 id="aligntab">AlignTab</h2>
+
+<p>VIM editörün tabular eklentisinden ilham alırak yapılmıştır.</p>
+
+<ul>
+  <li>
+    <p>Normal ifadeyi kullanarak hizala</p>
+  </li>
+  <li>
+    <p>Özel boşluk, dolgu ve gerekçelendirme.</p>
+  </li>
+  <li>
+    <p>Herhangi bir çizgi seçilmezse hizalama için akıllı algılama</p>
+  </li>
+  <li>
+    <p>Çoklu imleç desteği</p>
+  </li>
+  <li>
+    <p>Tablo modu ve Canlı önizleme modu özellikleri mevcuttur</p>
+  </li>
+  <li>
+    <p>Daha fazlası için <a href="https://github.com/randy3k/AlignTab" target="\_blank" rel="noopener noreferrer">Github</a> sayfasına göz atın.</p>
+  </li>
+</ul>
+
+<p><img src="/assets/images/AlignTab.webp" alt="AlignTab" /></p>
+
+<h2 id="autofilename">AutoFileName</h2>
+
+<p>Dosya yollarınızı otamatik olarak önünüze çıkartır. Olmayan bir dizin yazdığınızda öneriler çıkmaz. Css Js vb gibi dosyaları çağırırken ki yaptığımız hataları bir nebze olsada azaltır.</p>
+
+<h2 id="html-css-js-prettify">HTML-CSS-JS Prettify</h2>
+
+<p>HTML, CSS, JavaScript ve JSON kod biçimlendiricisi</p>
+
+<h2 id="docblockr">DocBlockr</h2>
+
+<p>Kod bloklarımızın üzerine açıklamalar yazarız ya işte buda o işe yarıyor /** Açıklama tab şeklinde kullanımı var diğer kullanımlar için <a href="https://github.com/spadgos/sublime-jsdocs" target="\_blank" rel="noopener noreferrer">github</a> sayfasına bakınız</p>
+
+<p><img src="/assets/images/DocBlockr.gif" alt="DocBlockr" /></p>
+
+<h2 id="a-file-icon">A File Icon</h2>
+
+<p>Dosyaların uzantılarına göre simgeler atıyor sidebarın daha şık görünmesini ayrıca dosyaların karışmasında engelliyor.Küçük pencerelerde çalışanlar için ideal.</p>
+
+<p><img src="/assets/images/AFileIcon.webp" alt="AFileIcon" /></p>
+
+<h2 id="tema-">Tema ?</h2>
+
+<p>Material Tema Kullanıyorum <a href="https://github.com/equinusocio/material-theme" target="\_blank" rel="noopener noreferrer">https://github.com/equinusocio/material-theme</a></p>
+
+<p><img src="/assets/images/material-theme.gif" alt="DocBlockr" /></p>
+
+<div class="details admonition abstract open">
+  <div class="details-summary admonition-title"><svg class="maicon icon icon-diamonds">
+    <use xlink:href="#icon-diamonds"></use>
+  </svg>Ek Bilgi<svg class="details-icon icon icon-circle-right">
+    <use xlink:href="#icon-circle-right"></use>
+  </svg></div>
+  <div class="details-content">
+    <div class="admonition-content"><p>Yeni kullandığım temalar ve pluginler (Özellikle PHP kodlayan arkadaşlar içindir) <a href="https://github.com/yuceltoluyag/sublime-text-3" target="_blank" rel="noopener noreferrer">https://github.com/yuceltoluyag/sublime-text-3</a></p>
+</div>
+  </div>
+</div>
+
+<p>Ayarlarım</p>
+
+<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="chroma"><code>{
+<span class="s2">"always_show_minimap_viewport"</span>: <span class="n">true</span>,
+<span class="s2">"bold_folder_labels"</span>: <span class="n">true</span>,
+<span class="s2">"color_scheme"</span>: <span class="s2">"Packages/MaterialTheme/schemes/Material-Theme.tmTheme"</span>,
+<span class="s2">"font_face"</span>:<span class="s2">"Hack"</span>,
+<span class="s2">"font_options"</span>: [<span class="s2">"gray_antialias"</span>,
+<span class="s2">"subpixel_antialias"</span>],
+<span class="s2">"font_size"</span>: <span class="m">18</span>,
+<span class="s2">"ignored_packages"</span>: [<span class="s2">"Vintage"</span>],
+<span class="s2">"indent_guide_options"</span>: [<span class="s2">"draw_normal"</span>,
+<span class="s2">"draw_active"</span>],
+<span class="s2">"line_padding_bottom"</span>: <span class="m">3</span>,
+<span class="s2">"line_padding_top"</span>: <span class="m">3</span>,
+<span class="s2">"material_theme_accent_acid-lime"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_blue"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_brba"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_bright-teal"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_cyan"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_graphite"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_indigo"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_lime"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_orange"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_pink"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_purple"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_red"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_scrollbars"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_sky"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_titlebar"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_tomato"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_accent_yellow"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_arrow_folders"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_big_fileicons"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_bold_tab"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_bright_scrollbars"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_bullet_tree_indicator"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_compact_panel"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_compact_sidebar"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_contrast_mode"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_disable_fileicons"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_disable_folder_animation"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_disable_tree_indicator"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_panel_separator"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_small_statusbar"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_small_tab"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_tabs_autowidth"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_tabs_separator"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_titlebar"</span>: <span class="n">true</span>,
+<span class="s2">"material_theme_tree_headings"</span>: <span class="n">true</span>,
+<span class="s2">"overlay_scroll_bars"</span>: <span class="s2">"enabled"</span>,
+<span class="s2">"theme"</span>: <span class="s2">"Material-Theme.sublime-theme"</span>
+}
+</code></pre></div></div>
+:ET

@@ -1,0 +1,17 @@
+I"�<p>Yılların efsanesi <strong>winamp</strong>, son dönemlerin popisi <strong>aimp</strong> windowsta en çok kullandığım iki müzik oynatıcımdı. Linux’ta bilinen bilinmeyen tüm mp3 oynatıcıları denedim fakat audacious kadar özelleştirebildiğim bir oynatıcı olmadı. Kimisinde plugin yoktu kimisi aşırı basitti. Özelleştirmeyi sevdiğim için benim tercihim oldu. Birisi çıkıp demesin CMUS var abi 😒</p>
+
+<!-- excerpt separator -->
+
+<ul>
+  <li>Audacious winamp’ın 2.x temalarını desteklemektedir.Tema sıkıntısı yaşamaz, ayrıca dosyaları inceleyerek kendi temalarınızıda yapabilirisiniz.</li>
+  <li>Winamp’ta ki kısayolların hemen hemen aynısını kullanmaktadır.</li>
+  <li>Yeterli sayıda eklenti var, eklenti dosyalarını inceleyip eklenti yazabilirsiniz. En azından eklentiler benim için yeterli 😀</li>
+</ul>
+
+<ol>
+  <li><a href="https://www.deviantart.com/customization/skins/media/winamp/classic/whats-hot/" target="\_blank" rel="noopener noreferrer">Audacious Temaları</a> adresinden temayı indirebilirsiniz.</li>
+  <li>İndirdiğiniz temayı <strong>.local/share/audacious/Skins</strong> dizini altına atacaksınız. Böyle bir dizin yok ise oluşturun.</li>
+  <li>Eklenti ve ayarlar için videoyu izleyiniz.</li>
+  <li><a href="https://www.youtube.com/channel/UCJyK4D5BcoPXjV5T8N8-liA?view_as=subscriber" target="\_blank" rel="noopener noreferrer">Video Link</a></li>
+</ol>
+:ET

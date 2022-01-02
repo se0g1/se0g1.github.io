@@ -1,0 +1,186 @@
+I"�<h1 id="psr-standartı-nedir-">PSR standartı nedir ?</h1>
+
+<p>PSR kısaca kod yazım standartıdır. Günümüz IDE ‘leri <strong>code refactor</strong> adı altında bu işlemi <strong>otamatik</strong> hale getirdiği için,çoğu yazılımcı’nın bu standarttan haberi olmaz(Freelancer için geçerli genelde). Başlarda otamatik işlemi otomatik yapan IDE ler standartlar değiştikçe bu işlemi extra olarak kullanıcıya bırakabiliyor.</p>
+
+<!-- excerpt separator -->
+
+<div class="box">
+  <p>Bu <strong>phpstorm</strong> serisinin 2. yazısıdır Toplamda 3 bölümden oluşmaktadır.</p>
+
+  <ul class="directory-list">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/phpstorm-icerisinde-cmder-kullanmak/">PHPStorm içerisinde cmder kullanmak</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <i>Phpstorm içerisinde CS Fixer Kullanmak</i>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li class="folder">
+      
+      <a href="/laravel-ide-helper-kullanimi/">Laravel ide helper kullanımı</a>
+      
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+<blockquote>
+  <p><strong>Deprecated</strong> - As of 2019-08-10 PSR-2 has been marked as deprecated. <a href="https://www.php-fig.org/psr/psr-12/" target="\_blank" rel="noopener noreferrer">PSR-12</a> is now recommended as an
+alternative.</p>
+</blockquote>
+
+<p><a href="https://www.php-fig.org/psr/psr-2/" target="\_blank" rel="noopener noreferrer">PSR-2</a> kod standartının kullanımı artık tavsiye edilmiyor. Lakin bu işlemi IDE ile yapıyorsanız direkt olarak psr-12 ye geçmenizi tavsiye etmem,bug değilde problemleri var gibi.(Henüz tam oturmadı gibi) <a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues/4502" target="\_blank" rel="noopener noreferrer">psr-12 hakkında</a></p>
+
+<h1 id="phpstorm-içerisinde-kullanmak">PHPSTORM içerisinde kullanmak</h1>
+
+<ul>
+  <li>Daha önceleri ekstra ayarlar yaparken,phpstorm 2018.3 versiyonundan itibaren varsayılan özellik olarak eklenmiştir. <a href="https://blog.jetbrains.com/phpstorm/2018/09/phpstorm-2018-3-early-access-program-is-open/" target="\_blank" rel="noopener noreferrer">PHP CS Fixer Support </a></li>
+  <li><a href="https://getcomposer.org/download/" target="\_blank" rel="noopener noreferrer">Composer</a> kurunuz.</li>
+  <li>php-cs-fixer ‘i composer yardımıyla kurun.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>composer global require friendsofphp/php-cs-fixer
+
+</code></pre></div></div>
+
+<ul>
+  <li>Settings-&gt;Languages &amp; Frameworks-&gt;PHP-&gt;Quality Tools-&gt;PHP Cs Fixer-&gt; Configuration menüsü altından csfixerin kurulu olduğu yeri gösteriyoruz.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>C:<span class="se">\U</span>sers<span class="se">\k</span>ullaniciadiniz<span class="se">\A</span>ppData<span class="se">\R</span>oaming<span class="se">\C</span>omposer<span class="se">\v</span>endor<span class="se">\b</span><span class="k">in</span><span class="se">\p</span>hp-cs-fixer.bat <span class="c">#windows için</span>
+/home/kullaniciadiniz/.composer/vendor/bin/php-cs-fixer <span class="c">#linux için</span>
+</code></pre></div></div>
+
+<p>Yollarını yazmalısınız. Validate(Doğrulama) butonuna basıp alta cs fixerin sürüm bilgilerinin geldiğini görün.</p>
+
+<p><img src="/assets/images/php_phpstorm_csfixer.webp" alt="phpstorm_inside_phpcsfixer" />
+<img src="/assets/images/php_phpstorm_csfixer2.webp" alt="phpstorm_inside_phpcsfixer" />
+<img src="/assets/images/php_phpstorm_csfixer3.webp" alt="phpstorm_inside_phpcsfixer" /></p>
+
+<ul>
+  <li>Settings-&gt;Tools-&gt;+ Butonuna basıp yeni ekleyin-&gt;</li>
+  <li>Name : Kısmına istediğinizi yazabilirsiniz</li>
+  <li>Description : Kısmına istediğiniz açıklama yazabilirsiniz</li>
+  <li>Program : Kısmına CSFixer in kurulu olduğu yol,üste vermiştim</li>
+  <li>Arguments : Kısmına Kullanmak istediğiniz argümanlar <a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer#usage" target="\_blank" rel="noopener noreferrer">Cs Fixer Kullanımı</a> kısmından hangi argümanın ne işe yaradığını okuyabilirsiniz. Burada tüm argümanları buraya yazmak yerine config dosyasının yolunu göstererek, tüm ayarlarımı bu dosya içerisinde yapıyorum.</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code>fix <span class="nt">--verbose</span> <span class="nt">--config</span><span class="o">=</span>C:<span class="se">\x</span>ampp<span class="se">\h</span>tdocs<span class="se">\u</span>runsat<span class="se">\.</span>php_cs.dist <span class="nt">--path-mode</span><span class="o">=</span>intersection <span class="s2">"</span><span class="nv">$FileDir$/$FileName</span><span class="s2">$"</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>Working Directory : Kısmına ise, bu işlemi sadece bu dosyada çalıştırmayabiliriz. Diğer projelerimize geçtiğimizde elle girmek yerine <strong>insert macro</strong> kısmından</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nv">$ProjectFileDir</span><span class="err">$</span>
+</code></pre></div></div>
+
+<p>Seçiyoruz. Bu sayede ,diğer projelerimiz içerisindede cs fixer işlemini kullanabiliyoruz.</p>
+
+<p><img src="/assets/images/php_phpstorm_csfixer4.webp" alt="phpstorm_inside_phpcsfixer" /></p>
+
+<p>Örnek php_cs dosyası <a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer/blob/master/.php_cs.dist" target="\_blank" rel="noopener noreferrer">.php_cs_dist</a> linkinden verilmiştir. <a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer#usage" target="\_blank" rel="noopener noreferrer">Cs Fixer Kullanımı</a> kısmından edindiğiniz bilgilere göre düzenleyin. Diğer bir örnek <a href="https://gist.github.com/azdanov/8f637142115feebf4b44e11a0971e5cb" target="\_blank" rel="noopener noreferrer">Doctrine coding style</a></p>
+
+<p>Phpstorm’u yeniden başlatın. Tools -&gt; External Tools-&gt; Menüsü altında Verdiğiniz isimde görünecektir. Kısayol eklemek isterseniz Settings-&gt;Keymap-&gt;External Tools-&gt; Verdiğiniz isim adında görünecektir. Ben alt+f eklediğim,siz dilediğinizi ekleyebilirsiniz.</p>
+
+<p><img src="/assets/images/php_phpstorm_csfixer5.webp" alt="phpstorm_inside_phpcsfixer" /></p>
+:ET

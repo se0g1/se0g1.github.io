@@ -1,0 +1,37 @@
+I"�	<p>Windowsan linuxa geçerken rufus benzeri programlar ile programlar ile kurulumu sorunsuz yapabilmekteyiz. Ancak linux tarafında wine kullanılsa dahi rufus programının düzgün çalıştığı söylenemez. Linux tarafında çok çeşitli uygulamalar mevcut fakat yeni kullanıcılar kullanmakta zorluklar çekmektedir.</p>
+
+<!-- excerpt separator -->
+
+<h1 id="hazırlık">Hazırlık</h1>
+
+<ol>
+  <li><a href="https://www.microsoft.com/tr-tr/software-download/windows10" target="\_blank" rel="noopener noreferrer">Windows10.iso</a> dosyanız yoksa edinin.</li>
+  <li><a href="https://github.com/slacka/WoeUSB" target="\_blank" rel="noopener noreferrer">WoeUSB programını yüklüyoruz.</a></li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="chroma"><code><span class="nb">sudo </span>add-apt-repository ppa:nilarimogard/webupd8
+<span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>woeusb
+</code></pre></div></div>
+
+<h1 id="usb-formatlama">USB Formatlama</h1>
+
+<p>USB diskimizi formatlıyoruz.
+<img src="/assets/images/linux_windows10_uefi.webp" alt="linux_windows10_uefi" /></p>
+
+<p><img src="/assets/images/linux_windows10_uefi_format.webp" alt="linux_windows10_uefi_format" /></p>
+
+<p>Burada dikkat etmemiz gereken nokta <strong>USB diskimizi muhakkak NTFS formatında biçimlendirmeliyiz.Aksi halde ekranda ki gibi hata alacaksınız.</strong></p>
+
+<p><img src="/assets/images/linux_windows10_uefi_format_error.webp" alt="linux_windows10_uefi_format_error" /></p>
+
+<p><strong>Woeusb</strong> programını artık açabiliriz.İlk yere iso dosyasımızı seçiyoruz. Altaki ekranda hazırladığımız usb diskimiz seçili olmalıdır.<img src="/assets/images/linux_windows10_uefi_disk.webp" alt="linux_windows10_uefi_disk" /></p>
+
+<p>İşlem tamamlandıktan sonra bilgisayarınızı yeniden başlatın ve boot edin.<img src="/assets/images/linux_windows10_uefi_boot.webp" alt="linux_windows10_uefi_boot" /></p>
+
+<p><img src="/assets/images/linux_windows10_uefi_boot_2.webp" alt="linux_windows10_uefi_boot_2" /></p>
+
+<h1 id="sonuç">Sonuç</h1>
+
+<p>Gördüğünüz gibi linuxta windows 10 format usbsi hazırlamış olduk,hemde uefi :) Kişisel görüşüm, linuxa yeni başladıysanız birden bire geçmeyin ,afallayabilirsiniz. Şu yazımı okumadıysanız okumanızı tavsiye ederim =&gt; <a href="https://yuceltoluyag.github.io/yeni-baslayanlar-hangi-linux-surumunu/" target="\_blank" rel="noopener noreferrer">Yeni Başlayanlar için Linux</a></p>
+:ET
